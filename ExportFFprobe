@@ -1,0 +1,11 @@
+#!/bin/bash
+
+# a copier dans ~/.local/share/nautilus/scripts
+# + droits d'execution chmod +x
+
+for fichier in "$@"; do
+    if [[ -f "$fichier" ]]; then
+        ffprobe -v quiet -show_format -show_streams -print_format json "$fichier" > "${fichier}.json"
+        # notify-send "Export ffprobe" "Fichier exporté : ${fichier}.json"
+    fi
+done
