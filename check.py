@@ -74,27 +74,27 @@ def analyse_media(filename, filepath):
 
     ## Traitement audio
     audio_streams = [s for s in media_info.get("streams", []) if s.get("codec_type") == "audio"]
-    languagecomment = "Pas de français"
+    frenchfound = False
+    otherfound = False
     for audio_stream in audio_streams:
         tags = audio_stream.get("tags", {})
         language = tags.get("language", "???")
         languagetitle = tags.get("title", "???")
         res["audio_codec"] += f"{language}:{audio_stream.get("codec_name", "???")} "
-        if language != "fre":
+        if language == "fre":
+            frenchfound = True
+        else:
+            otherfound = True
+    if frenchfound and otherfound:
             res["toclean"] = "Yes"
-        elif languagetitle.lower().find("français") != -1:
-            languagecomment = ""
-        elif languagecomment != "":
-            languagecomment = languagetitle
-    res["comment"] = languagecomment
 
     ## traitement sous-titre
     sub_streams = [s for s in media_info.get("streams", []) if s.get("codec_type") == "subtitle"]
     for sub_stream in sub_streams:
         language = sub_stream.get("tags", {}).get("language", "???")
         res["sub"] += f"{language} "
-        if language != "fre":
-            res["toclean"] = "Yes"
+        # if language != "fre":
+        #     res["toclean"] = "Yes"
 
     ## conclusion
     if filename.find("[3D]") != -1:
@@ -110,7 +110,8 @@ def analyse_media(filename, filepath):
         res["statut"]=""
 
     ## Génération du ticket
-    if res["statut"] == "ToEncode" or res["statut"] == "ToClean":
+    # if res["statut"] == "ToEncode" or res["statut"] == "ToClean":
+    if res["statut"] == "ToClean" and res['resolution'] == "1080p":
         with open(ticketpath+"/"+filename+".txt", "w") as f:
             f.write(f"action=\"{res["statut"]}\"\nfilename=\"{filename}\"\nfilepath=\"{filepath}\"\nvideo_codec=\"{res['video_codec']}\"\nresolution=\"{res['resolution']}\"\nbitrate=\"{res['bitrate']}\"\nprofile=\"{res['profile']}\"\n")
 

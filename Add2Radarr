@@ -1,0 +1,18 @@
+#!/bin/bash
+
+# a copier dans ~/.local/share/nautilus/scripts
+# + droits d'execution chmod +x
+
+radarrpath="/home/moi/mediaHD1/Servarr/Films"
+for fichier in "$@"; do
+    if [[ -f "$fichier" ]]; then
+        filmname=$(basename "${fichier%.*}")
+        mkdir -p "$radarrpath/$filmname"
+        filename=$(basename "${fichier}")
+        # Créer un link dans le dossier dédié
+        # ln "$film" "$radarrpath/$filmname/"
+        ln -s "/data/Films/$filename" "$radarrpath/$filmname/"
+
+        # notify-send "Export ffprobe" "Fichier exporté : ${fichier}.json"
+    fi
+done
