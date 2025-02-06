@@ -35,7 +35,10 @@ def analyse_media(filename, filepath):
         res["statut"] = "Err"
         res["comment"] = "Pas de flux vidéo"
         return res
-
+    if len(video_streams) > 1:
+        res["statut"] = "Err"
+        res["comment"] = "Plusieurs flux vidéo"
+        return res
 
     ## Traitement vidéo
     # 4320p (8K) : 7 680 x 4 320.

@@ -96,3 +96,6 @@ DIR="/chemin/vers/tes/films"
 find "/media/HD1/Films" -type f -links +1 -printf "%n links -> %p\n"
 
 ln -s "/home/moi/mediaHD1/Films/Armageddon (1998).mkv" "/home/moi/mediaHD1/Servarr/Films/Armageddon (1998)"
+
+### Tester une vidéo mais pas complet
+ffmpeg.exe -v erreur -i %1 -f null -> "%~1.log" 2>&1
