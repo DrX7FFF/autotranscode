@@ -5,14 +5,32 @@ import json
 import datetime
 
 separator = "|"
+modetest = True
 
-moviespath = "/home/moi/mediaHD1/Films"
+if modetest:
+    moviespath = "./examples"
+else:
+    moviespath = "/home/moi/mediaHD1/Films"
 # moviespath = "/home/moi/mediaHD1/Servarr/ToDo"
 ticketpath = "/home/moi/mediaHD1/Servarr/TranscodingTickets"
 
 
+keys_to_keep_in_stream = ["filename", "statut", "toencode", "toclean", "size", "resolution", "video_codec", "bitrate", "profile", "audio_codec", "sub", "comment", "modif"]
+keys_to_keep = {"video": ["avg_frame_rate", "codec_name", "profile", "codec_long_name"]}
+def filtrer_json(data):
+    tokeep = ["index", "codec_type"] 
+    if data["codec_type"] in keys_to_keep:
+        tokeep += keys_to_keep[data["codec_type"]]
+    return {k: v for k, v in data.items() if k in tokeep}
+
 def get_media_info(filepath):
     """Utilise ffprobe pour récupérer les infos du fichier."""
+
+    if modetest:
+        with open(filepath, 'r') as file:
+            data = json.load(file)
+        return data
+    
     cmd = [ "ffprobe", "-v", "quiet", "-show_format", "-show_streams", "-print_format", "json", filepath ]
     result = subprocess.run(cmd, stdout=subprocess.PIPE, stderr=subprocess.PIPE, text=True)
     if result.returncode != 0:
@@ -24,7 +42,12 @@ def analyse_media(filename, filepath):
 
     res = {"filename": filename, "statut": "", "toencode":"No", "toclean":"No", "size": int(filestats.st_size/(1024*1024))/1000,  "resolution": "", "video_codec": "", "bitrate": "", "profile": "", "audio_codec":"", "sub":"", "comment":"", "modif": datetime.datetime.fromtimestamp(filestats.st_mtime).strftime("%d/%m/%Y %H:%M")}
 
+    temp = []
     media_info = get_media_info(filepath)
+    for stream in media_info.get("streams", []):
+        toto = filtrer_json(stream)
+        temp.append(toto)
+    
     if not media_info:
         res["statut"] = "Err"
         res["comment"] = "Erreur lors de l'analyse du fichier"
