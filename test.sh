@@ -99,3 +99,11 @@ ln -s "/home/moi/mediaHD1/Films/Armageddon (1998).mkv" "/home/moi/mediaHD1/Serva
 
 ### Tester une vidéo mais pas complet
 ffmpeg.exe -v erreur -i %1 -f null -> "%~1.log" 2>&1
+
+
+ffmpeg -hide_banner -loglevel warning -stats \
+-i "/home/moi/mediaHD1/Films/Dark City (1998).mkv" \
+-map_metadata 0 -map_chapters 0 -map 0 \
+-map -0:1 -map -0:4 \
+-c:v copy -c:a copy -c:s copy \
+"/home/moi/mediaHD1/Servarr/Transcoding/Dark City (1998).mkv"

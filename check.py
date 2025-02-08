@@ -4,6 +4,8 @@ import subprocess
 import json
 import datetime
 import csv
+import re
+
 
 modetest = False
 
@@ -13,6 +15,7 @@ else:
     moviespath = "/home/moi/mediaHD1/Films"
 # moviespath = "/home/moi/mediaHD1/Servarr/ToDo"
 ticketpath = "/home/moi/mediaHD1/Servarr/TranscodingTickets"
+filmlistfile = "check.json"
 
 def export_to_csv(data, filename="output.csv"):
     """ Exporte une structure JSON dynamique en CSV tout en respectant l'ordre des clés. """
@@ -44,28 +47,12 @@ def export_to_csv(data, filename="output.csv"):
                 writer.writerow(row)
 
 to_keep = {
-    "common":{"index":"index", "remove":"", "type":"codec_type", "codec":"codec_name"}, 
-    "video": {  "resolution":"width", "frame_rate": "avg_frame_rate", "profile":"profile"}, 
+    "common":{"remove":"", "index":"index", "type":"codec_type", "codec":"codec_name"}, 
+    "video": {  "resolution":"", "width":"width", "height":"height", "frame_rate": "avg_frame_rate", "profile":"profile"}, 
     "audio": {   "language":["tags","language"], "title":["tags","title"], "channel":"channel_layout"}, 
     "subtitle": {"language":["tags","language"], "title":["tags","title"]}
     }
 
-# def filtrer_json(data):
-#     tokeep = ["index", "codec_type", "codec_name", "codec_long_name"] 
-#     if data["codec_type"] in to_keep.keys():
-#         tokeep += to_keep[data["codec_type"]]
-#     res = {k: v for k, v in data.items() if k in tokeep}
-#     return res
-
-    ## Traitement vidéo
-    # 4320p (8K) : 7 680 x 4 320.
-    # 2160p (4K) : 3 840 x 2 160.
-    # 1440p (2K) : 2 560 x 1 440.
-    # 1080p (HD) : 1 920 x 1 080.
-    # 720p (HD) : 1 280 x 7 20.
-    # 480p (SD) : 854 x 480.
-    # 360p (SD) : 640 x 360.
-    # 240p (SD) : 426 x 240.
 
 resolution_map = {
     range(1900, 1940): '1080p',
@@ -75,18 +62,27 @@ resolution_map = {
     range(406, 446): '240p'
 }
 
+
 def stream_treatment(stream):
+    pattern = r"\b(VFQ|AD)\b"
+    stream["remove"] = False
     match stream["type"]:
         case "video":
-            if stream["frame_rate"] == "0/0":
+            for r, res in resolution_map.items():
+                if stream["width"]  in r:
+                    stream["resolution"] = res
+                else:
+                    stream["resolution"] = f"{stream["width"]}x{stream["height"]}"
+            if stream["codec"] in ["mjpeg", "png"] or stream["frame_rate"] == "0/0":
+                stream["remove"] = True
+        case "audio":
+            if not stream["language"] in ["fre", "fra", "und", "", None]:
                 stream["remove"] = True
             else:
-                for r, res in resolution_map.items():
-                    if stream["resolution"]  in r:
-                        stream["resolution"] = res
-        case "audio":
-            if not stream["language"] in ["fre", "fra","", None]:
-                stream["remove"] = True
+                if stream["title"] != None:
+                    match = re.findall(pattern, stream["title"])
+                    if match:
+                        stream["remove"]=True
         case "subtitle":
             if stream["language"] != "fre" and stream["language"] != "fra" and stream["language"] != "":
                 stream["remove"] = True
@@ -102,7 +98,7 @@ def get_value(data, path):
         return data if data else None
     return data.get(path)
 
-def filter_stream(stream):
+def convert_stream(stream):
     """ Filtre un stream selon les clés définies dans to_keep. """
     result = {}
     
@@ -133,33 +129,43 @@ def get_media_info(filepath):
         return None
     return json.loads(result.stdout)
 
-def analyse_media(filename, filepath):
+def analyse_media(filename, filepath, index):
     filestats = os.stat(filepath)
 
-    res = {"filename": filename, "comment":"", "size": int(filestats.st_size/(1024*1024))/1000, "bitrate": "", "modif": datetime.datetime.fromtimestamp(filestats.st_mtime).strftime("%d/%m/%Y %H:%M"), "streams": []}
+    res = {"todo":False, "fileindex":index, "filename": filename, "status":"", "comment":"", "size": int(filestats.st_size/(1024*1024))/1000, "bitrate": "", "modif": datetime.datetime.fromtimestamp(filestats.st_mtime).strftime("%d/%m/%Y %H:%M"), "streams": []}
 
     media_info = get_media_info(filepath)
     if not media_info:
         res["comment"] = "Erreur lors de l'analyse du fichier"
+        res["status"] = "Err"
         return res
 
-    streams = media_info.get("streams", [])
-    res["streams"] = [filter_stream(stream) for stream in streams]
-    
+    res["bitrate"] = int(int(media_info.get("format").get("bit_rate","0"))/1000)
+    res["streams"] = [convert_stream(stream) for stream in media_info.get("streams", [])]
+   
+    ### Check video stream
+    video_streams = [s for s in res["streams"] if s.get("type") == "video" and not s.get("remove")]
+    audio_streams = [s for s in res["streams"] if s.get("type") == "audio" and not s.get("remove")]
 
-    video_streams = [s for s in res["streams"] if s.get("type") == "video"]
-    if not video_streams:
+    if filename.find("[3D]") != -1:
+        res["comment"] = "Film 3D"
+        res["status"] = "Ign"
+    elif not video_streams:
         res["comment"] = "Pas de flux vidéo"
-        return res
-    if len(video_streams) > 1:
+        res["status"] = "Err"
+    elif len(video_streams) > 1:
         res["comment"] = "Plusieurs flux vidéo"
+        res["status"] = "Err"
+    ### Check audio stream
+    elif not audio_streams:
+        res["comment"] = "Pas de flux audio"
+        res["status"] = "Err"
         return res
-
-    res["bitrate"] = int(video_streams[0].get("bit_rate", "0"))
-    if res["bitrate"] == 0:
-        res["bitrate"] = int(media_info.get("format").get("bit_rate","0"))
-    res["bitrate"]=int(res["bitrate"]/1000)
-
+    else:
+        audio_streams_remove = [s for s in res["streams"] if s.get("type") == "audio" and s.get("remove")]
+        if len(audio_streams) > 1:
+            res["comment"] = "To clean audio"
+            res["status"] = "ToDo"
     # if res["video_codec"] == "h264" and res["resolution"] == "1080p" and res["bitrate"] > 20000:
     #     res["toencode"] = "Yes"
 
@@ -176,8 +182,7 @@ def analyse_media(filename, filepath):
     #         res["toclean"] = "Yes"
 
     ## conclusion
-    if filename.find("[3D]") != -1:
-        res["comment"] = "Film 3D"
+
     # elif res["toencode"] == "Yes":
     #     res["statut"] = "ToEncode"
     # elif res["toclean"] == "Yes":
@@ -198,11 +203,33 @@ for filename in os.listdir(moviespath) :
     fullfilename = os.path.join(moviespath, filename)
     if os.path.isfile(fullfilename):
         print(fullfilename)
-        res = analyse_media(filename, fullfilename)
+        res = analyse_media(filename, fullfilename, len(filmlist))
         filmlist.append(res)
 
-# print(json.dumps(filmlist, indent=2, ensure_ascii=False))
-with open("check.json", 'w') as file:
-    json.dump(filmlist, file, indent=2, ensure_ascii=False)
+def custom_json_format(obj, level=0):
+    """Formate le JSON pour qu'il soit compact mais avec des retours à la ligne pour chaque objet."""
+    if isinstance(obj, dict):
+        items = [f'"{k}":{custom_json_format(v, level+1)}' for k, v in obj.items()]
+        return '{ ' + ',\t'.join(items) + ' }'
+    elif isinstance(obj, list):
+        items = [custom_json_format(v, level+1) for v in obj]
+        return '[\n\t' + ',\n\t'.join(items) + ']'
+    else:
+        return json.dumps(obj, ensure_ascii=False)
 
+with open(filmlistfile, 'w') as file:
+    file.write('[\n')
+    file.write(',\n'.join(custom_json_format(obj, 1) for obj in filmlist))
+    file.write('\n]\n')
+
+
+# with open("check.json", 'w') as file:
+#     json.dump(filmlist, file, ensure_ascii=False, separators=(',', ':'))
+    # json.dump(filmlist, file, indent=2, ensure_ascii=False, separators=(',', ':'))
+
+# with open("check.json", 'w') as file:
+#     for obj in filmlist:
+#         file.write(json.dumps(obj, ensure_ascii=False) + "\n")
+
+# export_to_csv(filmlist, "/home/moi/GoogleDrive/test/checktemp.csv")
 export_to_csv(filmlist, "checktemp.csv")
