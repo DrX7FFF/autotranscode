@@ -5,7 +5,8 @@ import json
 import datetime
 import csv
 import re
-
+import unicodedata
+from common import *
 
 modetest = False
 
@@ -13,9 +14,6 @@ if modetest:
     moviespath = "./examples"
 else:
     moviespath = "/home/moi/mediaHD1/Films"
-# moviespath = "/home/moi/mediaHD1/Servarr/ToDo"
-ticketpath = "/home/moi/mediaHD1/Servarr/TranscodingTickets"
-filmlistfile = "check.json"
 
 def export_to_csv(data, filename="output.csv"):
     """ Exporte une structure JSON dynamique en CSV tout en respectant l'ordre des clés. """
@@ -47,12 +45,11 @@ def export_to_csv(data, filename="output.csv"):
                 writer.writerow(row)
 
 to_keep = {
-    "common":{"remove":"", "index":"index", "type":"codec_type", "codec":"codec_name"}, 
+    "common":{"remove":"", "index":"index", "codec_type":"codec_type", "codec_name":"codec_name"}, 
     "video": {  "resolution":"", "width":"width", "height":"height", "frame_rate": "avg_frame_rate", "profile":"profile"}, 
     "audio": {   "language":["tags","language"], "title":["tags","title"], "channel":"channel_layout"}, 
     "subtitle": {"language":["tags","language"], "title":["tags","title"]}
     }
-
 
 resolution_map = {
     range(1900, 1940): '1080p',
@@ -62,25 +59,27 @@ resolution_map = {
     range(406, 446): '240p'
 }
 
+def normalize_string(s):
+    return (''.join(c for c in unicodedata.normalize('NFKD', s) if not unicodedata.combining(c))).upper()
 
 def stream_treatment(stream):
-    pattern = r"\b(VFQ|AD)\b"
+    pattern = r"\b(VFQ|AD|QUEBECOIS)\b"
     stream["remove"] = False
-    match stream["type"]:
+    match stream["codec_type"]:
         case "video":
             for r, res in resolution_map.items():
                 if stream["width"]  in r:
                     stream["resolution"] = res
                 else:
                     stream["resolution"] = f"{stream["width"]}x{stream["height"]}"
-            if stream["codec"] in ["mjpeg", "png"] or stream["frame_rate"] == "0/0":
+            if stream["codec_name"] in ["mjpeg", "png"] or stream["frame_rate"] == "0/0":
                 stream["remove"] = True
         case "audio":
             if not stream["language"] in ["fre", "fra", "und", "", None]:
                 stream["remove"] = True
             else:
                 if stream["title"] != None:
-                    match = re.findall(pattern, stream["title"])
+                    match = re.findall(pattern, normalize_string(stream["title"]))
                     if match:
                         stream["remove"]=True
         case "subtitle":
@@ -106,8 +105,8 @@ def convert_stream(stream):
     for new_key, old_key in to_keep["common"].items():
         result[new_key] = get_value(stream, old_key)
     
-    # Ajouter les valeurs spécifiques au type de stream
-    stream_type = result["type"]
+    # Ajouter les valeurs spécifiques au codec_type de stream
+    stream_type = result["codec_type"]
     if stream_type in to_keep:
         for new_key, old_key in to_keep[stream_type].items():
             result[new_key] = get_value(stream, old_key)
@@ -144,8 +143,8 @@ def analyse_media(filename, filepath, index):
     res["streams"] = [convert_stream(stream) for stream in media_info.get("streams", [])]
    
     ### Check video stream
-    video_streams = [s for s in res["streams"] if s.get("type") == "video" and not s.get("remove")]
-    audio_streams = [s for s in res["streams"] if s.get("type") == "audio" and not s.get("remove")]
+    video_streams = [s for s in res["streams"] if s.get("codec_type") == "video" and not s.get("remove")]
+    audio_streams = [s for s in res["streams"] if s.get("codec_type") == "audio" and not s.get("remove")]
 
     if filename.find("[3D]") != -1:
         res["comment"] = "Film 3D"
@@ -160,26 +159,15 @@ def analyse_media(filename, filepath, index):
     elif not audio_streams:
         res["comment"] = "Pas de flux audio"
         res["status"] = "Err"
-        return res
     else:
-        audio_streams_remove = [s for s in res["streams"] if s.get("type") == "audio" and s.get("remove")]
-        if len(audio_streams) > 1:
-            res["comment"] = "To clean audio"
+        streams_remove = [s for s in res["streams"] if s.get("remove")==True]
+        if len(streams_remove) > 1:
+            res["comment"] = "To clean"
             res["status"] = "ToDo"
+            res["todo"] = True
     # if res["video_codec"] == "h264" and res["resolution"] == "1080p" and res["bitrate"] > 20000:
     #     res["toencode"] = "Yes"
 
-    ## Traitement audio
-    # audio_streams = [s for s in media_info.get("streams", []) if s.get("codec_type") == "audio"]
-    # frenchfound = False
-    # otherfound = False
-    # for audio_stream in audio_streams:
-    #     if language == "fre":
-    #         frenchfound = True
-    #     else:
-    #         otherfound = True
-    # if frenchfound and otherfound:
-    #         res["toclean"] = "Yes"
 
     ## conclusion
 
@@ -192,9 +180,6 @@ def analyse_media(filename, filepath, index):
 
     ## Génération du ticket
     # if res["statut"] == "ToEncode" or res["statut"] == "ToClean":
-    # if res["statut"] == "ToClean" and res['resolution'] == "1080p":
-    #     with open(ticketpath+"/"+filename+".txt", "w") as f:
-    #         f.write(f"action=\"{res["statut"]}\"\nfilename=\"{filename}\"\nfilepath=\"{filepath}\"\nvideo_codec=\"{res['video_codec']}\"\nresolution=\"{res['resolution']}\"\nbitrate=\"{res['bitrate']}\"\nprofile=\"{res['profile']}\"\n")
 
     return res
 
@@ -206,30 +191,8 @@ for filename in os.listdir(moviespath) :
         res = analyse_media(filename, fullfilename, len(filmlist))
         filmlist.append(res)
 
-def custom_json_format(obj, level=0):
-    """Formate le JSON pour qu'il soit compact mais avec des retours à la ligne pour chaque objet."""
-    if isinstance(obj, dict):
-        items = [f'"{k}":{custom_json_format(v, level+1)}' for k, v in obj.items()]
-        return '{ ' + ',\t'.join(items) + ' }'
-    elif isinstance(obj, list):
-        items = [custom_json_format(v, level+1) for v in obj]
-        return '[\n\t' + ',\n\t'.join(items) + ']'
-    else:
-        return json.dumps(obj, ensure_ascii=False)
+savefilmlist(filmlistfile,filmlist)
 
-with open(filmlistfile, 'w') as file:
-    file.write('[\n')
-    file.write(',\n'.join(custom_json_format(obj, 1) for obj in filmlist))
-    file.write('\n]\n')
-
-
-# with open("check.json", 'w') as file:
-#     json.dump(filmlist, file, ensure_ascii=False, separators=(',', ':'))
-    # json.dump(filmlist, file, indent=2, ensure_ascii=False, separators=(',', ':'))
-
-# with open("check.json", 'w') as file:
-#     for obj in filmlist:
-#         file.write(json.dumps(obj, ensure_ascii=False) + "\n")
 
 # export_to_csv(filmlist, "/home/moi/GoogleDrive/test/checktemp.csv")
 export_to_csv(filmlist, "checktemp.csv")
