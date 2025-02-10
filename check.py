@@ -1,25 +1,8 @@
-import os
 import sys
-import subprocess
 import json
-import datetime
 import re
 import unicodedata
 from common import *
-
-modetest = False
-
-if modetest:
-    moviespath = "./examples"
-else:
-    moviespath = "/home/moi/mediaHD1/Films"
-
-to_keep = {
-    "common":{"remove":"", "index":"index", "codec_type":"codec_type", "codec_name":"codec_name"}, 
-    "video": {  "resolution":"", "width":"width", "height":"height", "frame_rate": "avg_frame_rate", "profile":"profile"}, 
-    "audio": {   "language":["tags","language"], "title":["tags","title"], "channel":"channel_layout"}, 
-    "subtitle": {"language":["tags","language"], "title":["tags","title"]}
-    }
 
 resolution_map = {
     range(1900, 1940): '1080p',
@@ -33,90 +16,43 @@ def normalize_string(s):
     return (''.join(c for c in unicodedata.normalize('NFKD', s) if not unicodedata.combining(c))).upper()
 
 def stream_treatment(stream):
+    resultat = {"remove": False}
+    resultat.update(stream)
     pattern = r"\b(VFQ|AD|SDH|QUEBECOIS)\b"
-    stream["remove"] = False
-    match stream["codec_type"]:
+    match resultat["codec_type"]:
         case "video":
+            resultat["resolution"] = f"{resultat["width"]}x{resultat["height"]}"
             for r, res in resolution_map.items():
-                if stream["width"]  in r:
-                    stream["resolution"] = res
-                else:
-                    stream["resolution"] = f"{stream["width"]}x{stream["height"]}"
-            if stream["codec_name"] in ["mjpeg", "png"] or stream["frame_rate"] == "0/0":
-                stream["remove"] = True
+                if resultat["width"]  in r:
+                    resultat["resolution"] = res
+                    break
+            if resultat["codec_name"] in ["mjpeg", "png"] or resultat["frame_rate"] == "0/0":
+                resultat["remove"] = True
         case "audio":
-            if not stream["language"] in ["fre", "fra", "und", "mis", "", None]:
-                stream["remove"] = True
+            if not resultat["language"] in ["fre", "fra", "und", "mis", "", None]:
+                resultat["remove"] = True
             else:
-                if stream["title"] != None:
-                    match = re.findall(pattern, normalize_string(stream["title"]))
+                if resultat["title"] != None:
+                    match = re.findall(pattern, normalize_string(resultat["title"]))
                     if match:
-                        stream["remove"]=True
+                        resultat["remove"]=True
         case "subtitle":
-            if not stream["language"] in ["fre", "fra", "und", "mis", "", None]:
-                stream["remove"] = True
+            if not resultat["language"] in ["fre", "fra", "und", "mis", "", None]:
+                resultat["remove"] = True
             else:
-                if stream["title"] != None:
-                    match = re.findall(pattern, normalize_string(stream["title"]))
+                if resultat["title"] != None:
+                    match = re.findall(pattern, normalize_string(resultat["title"]))
                     if match:
-                        stream["remove"]=True
+                        resultat["remove"]=True
         case default:
-            stream["remove"] = True
-    return stream
-
-def get_value(data, path):
-    """ Récupère une valeur dans un dictionnaire avec un chemin (liste de clés). """
-    if isinstance(path, list):
-        for key in path:
-            data = data.get(key, {})
-        return data if data else None
-    return data.get(path)
-
-def convert_stream(stream):
-    """ Filtre un stream selon les clés définies dans to_keep. """
-    result = {}
-    
-    # Ajouter les valeurs communes
-    for new_key, old_key in to_keep["common"].items():
-        result[new_key] = get_value(stream, old_key)
-    
-    # Ajouter les valeurs spécifiques au codec_type de stream
-    stream_type = result["codec_type"]
-    if stream_type in to_keep:
-        for new_key, old_key in to_keep[stream_type].items():
-            result[new_key] = get_value(stream, old_key)
-    
-    return stream_treatment(result)
+            resultat["remove"] = True
+    return resultat
 
 
-def get_media_info(filepath):
-    """Utilise ffprobe pour récupérer les infos du fichier."""
+def analyse_media(filename, moviedef):
+    res = {"todo":False, "filename": filename, "status":"", "comment":"", "streams": []}
+    res["streams"] = [stream_treatment(stream) for stream in moviedef["streams"]]
 
-    if modetest:
-        with open(filepath, 'r') as file:
-            data = json.load(file)
-        return data
-    
-    cmd = [ "ffprobe", "-v", "quiet", "-show_format", "-show_streams", "-print_format", "json", filepath ]
-    result = subprocess.run(cmd, stdout=subprocess.PIPE, stderr=subprocess.PIPE, text=True)
-    if result.returncode != 0:
-        return None
-    return json.loads(result.stdout)
-
-def analyse_media(filename, filepath, index):
-    filestats = os.stat(filepath)
-
-    res = {"todo":False, "fileindex":index, "filename": filename, "status":"", "comment":"", "size": int(filestats.st_size/(1024*1024))/1000, "bitrate": "", "modif": datetime.datetime.fromtimestamp(filestats.st_mtime).strftime("%d/%m/%Y %H:%M"), "streams": []}
-
-    media_info = get_media_info(filepath)
-    if not media_info:
-        res["comment"] = "Erreur lors de l'analyse du fichier"
-        res["status"] = "Err"
-        return res
-
-    res["bitrate"] = int(int(media_info.get("format").get("bit_rate","0"))/1000)
-    res["streams"] = [convert_stream(stream) for stream in media_info.get("streams", [])]
-   
     ### Check video stream
     video_streams = [s for s in res["streams"] if s.get("codec_type") == "video" and not s.get("remove")]
     audio_streams = [s for s in res["streams"] if s.get("codec_type") == "audio" and not s.get("remove")]
@@ -164,13 +100,10 @@ def analyse_media(filename, filepath, index):
     return res
 
 
-filmlist = []
-for filename in os.listdir(moviespath) :
-    fullfilename = os.path.join(moviespath, filename)
-    if os.path.isfile(fullfilename):
-        print(fullfilename)
-        res = analyse_media(filename, fullfilename, len(filmlist))
-        filmlist.append(res)
+movieslist = loadjson(dbfilename)
+todolist = []
+for filename, moviedef in movieslist.items():
+    todolist.append(analyse_media(filename, moviedef))
 
-savefilmlist(filmlistfile,filmlist)
-export_to_csv(filmlist, "checktemp.csv")
+save_todo(todolist)
+export_to_csv(todolist)

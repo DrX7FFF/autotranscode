@@ -6,8 +6,6 @@ import datetime
 from common import *
 
 
-moviespath = "/home/moi/mediaHD1/Films"
-
 to_keep = {
     "common":{"index":"index", "codec_type":"codec_type", "codec_name":"codec_name"}, 
     "video": {  "resolution":"", "width":"width", "height":"height", "frame_rate": "avg_frame_rate", "profile":"profile"}, 
@@ -73,4 +71,4 @@ for filename in os.listdir(moviespath) :
         if res:
             movieslist[filename] = res
 
-db_save(dbfilename,movieslist)
+db_save(movieslist)

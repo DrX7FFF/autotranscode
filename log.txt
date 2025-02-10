@@ -1,31 +1,64 @@
-2025-02-10 00:29:30 [INFO] >>>> Begin
-2025-02-10 00:29:30 [INFO] L'Agence (2011).mkv
-2025-02-10 00:34:45 [ERROR] [matroska,webm @ 0x5b05bdd2d500] File extends beyond end of segment.
-2025-02-10 00:55:59 [INFO] >>>> Begin
-2025-02-10 00:55:59 [INFO] 2012 (2009).mkv
-2025-02-10 00:55:59 [INFO] ffmpeg -y -hide_banner -loglevel warning -analyzeduration 2000M -probesize 4000M -i /home/moi/mediaHD1/Films/2012 (2009).mkv -map_metadata 0 -map_chapters 0 -map 0 -map -0:5 -map -0:6 -map -0:7 -map -0:8 -map -0:9 -c:v copy -c:a copy -c:s copy /home/moi/mediaHD1/Servarr/Transcoding/2012 (2009).mkv
-2025-02-10 01:03:36 [INFO] gain=-0.027Mo duration=(7, 37)
-2025-02-10 01:03:36 [INFO] 8 millimètres (1999).mkv
-2025-02-10 01:03:36 [INFO] ffmpeg -y -hide_banner -loglevel warning -i /home/moi/mediaHD1/Films/8 millimètres (1999).mkv -map_metadata 0 -map_chapters 0 -map 0 -map -0:5 -map -0:6 -c:v copy -c:a copy -c:s copy /home/moi/mediaHD1/Servarr/Transcoding/8 millimètres (1999).mkv
-2025-02-10 01:13:34 [INFO] >>>> Begin
-2025-02-10 01:13:34 [INFO] 8 millimètres (1999).mkv
-2025-02-10 01:13:34 [INFO] ffmpeg -y -hide_banner -loglevel warning -i /home/moi/mediaHD1/Films/8 millimètres (1999).mkv -map_metadata 0 -map_chapters 0 -map 0 -map -0:5 -map -0:6 -c:v copy -c:a copy -c:s copy /home/moi/mediaHD1/Servarr/Transcoding/8 millimètres (1999).mkv
-2025-02-10 01:15:53 [INFO] gain=0.001Mo duration=(2, 19)
-2025-02-10 01:15:53 [INFO] ---------------------------------------
-2025-02-10 01:15:53 [INFO] After Earth (2013).mkv
-2025-02-10 01:15:53 [INFO] ffmpeg -y -hide_banner -loglevel warning -analyzeduration 2000M -probesize 4000M -i /home/moi/mediaHD1/Films/After Earth (2013).mkv -map_metadata 0 -map_chapters 0 -map 0 -map -0:1 -map -0:2 -map -0:3 -map -0:4 -map -0:6 -c:v copy -c:a copy -c:s copy /home/moi/mediaHD1/Servarr/Transcoding/After Earth (2013).mkv
-2025-02-10 01:21:37 [INFO] gain=-0.324Mo duration=(5, 44)
-2025-02-10 01:21:37 [INFO] ---------------------------------------
-2025-02-10 01:21:37 [INFO] Air Force One (1997).mkv
-2025-02-10 01:21:37 [INFO] ffmpeg -y -hide_banner -loglevel warning -analyzeduration 2000M -probesize 4000M -i /home/moi/mediaHD1/Films/Air Force One (1997).mkv -map_metadata 0 -map_chapters 0 -map 0 -map -0:2 -map -0:3 -c:v copy -c:a copy -c:s copy /home/moi/mediaHD1/Servarr/Transcoding/Air Force One (1997).mkv
-2025-02-10 01:39:57 [INFO] gain=-0.026Mo duration=(18, 19)
-2025-02-10 01:39:57 [INFO] ---------------------------------------
-2025-02-10 01:39:57 [INFO] Alice au pays des merveilles (2010).mkv
-2025-02-10 01:39:57 [INFO] ffmpeg -y -hide_banner -loglevel warning -i /home/moi/mediaHD1/Films/Alice au pays des merveilles (2010).mkv -map_metadata 0 -map_chapters 0 -map 0 -map -0:3 -map -0:4 -map -0:5 -c:v copy -c:a copy -c:s copy /home/moi/mediaHD1/Servarr/Transcoding/Alice au pays des merveilles (2010).mkv
-2025-02-10 01:45:00 [INFO] gain=0.0Mo duration=(5, 3)
-2025-02-10 01:45:00 [INFO] ---------------------------------------
-2025-02-10 01:45:00 [INFO] Alice de l'autre côté du miroir (2016).mkv
-2025-02-10 01:45:00 [INFO] ffmpeg -y -hide_banner -loglevel warning -i /home/moi/mediaHD1/Films/Alice de l'autre côté du miroir (2016).mkv -map_metadata 0 -map_chapters 0 -map 0 -map -0:4 -map -0:5 -map -0:6 -map -0:7 -map -0:8 -c:v copy -c:a copy -c:s copy /home/moi/mediaHD1/Servarr/Transcoding/Alice de l'autre côté du miroir (2016).mkv
-2025-02-10 01:50:29 [INFO] gain=0.0Mo duration=(5, 28)
-2025-02-10 01:50:29 [INFO] ---------------------------------------
-2025-02-10 01:50:29 [INFO] >>>> End
+2025-02-10 19:35:53 [INFO] >>>> Begin
+2025-02-10 19:35:53 [INFO] Alien, la résurrection (1997).mkv
+2025-02-10 19:35:53 [INFO] ffmpeg -y -loglevel warning -progress pipe:1 -i /home/moi/mediaHD1/Films/Alien, la résurrection (1997).mkv -t 600 -map_metadata 0 -map_chapters 0 -map 0 -map -0:4 -c:v copy -c:a copy -c:s copy /home/moi/mediaHD1/Servarr/Transcoding/Alien, la résurrection (1997).mkv
+2025-02-10 19:36:42 [ERROR] Abandon :
+2025-02-10 19:36:42 [ERROR] 
+2025-02-10 19:36:42 [INFO] ---------------------------------------
+2025-02-10 19:36:42 [INFO] >>>> End
+2025-02-10 19:38:03 [INFO] >>>> Begin
+2025-02-10 19:38:03 [INFO] Alien, la résurrection (1997).mkv
+2025-02-10 19:38:03 [INFO] ffmpeg -y -loglevel warning -progress pipe:1 -i /home/moi/mediaHD1/Films/Alien, la résurrection (1997).mkv -map_metadata 0 -map_chapters 0 -map 0 -map -0:4 -c:v copy -c:a copy -c:s copy /home/moi/mediaHD1/Servarr/Transcoding/Alien, la résurrection (1997).mkv
+2025-02-10 19:44:06 [ERROR] Abandon :
+2025-02-10 19:44:06 [ERROR] 
+2025-02-10 19:44:06 [INFO] ---------------------------------------
+2025-02-10 19:44:06 [INFO] >>>> End
+2025-02-10 19:50:42 [INFO] >>>> Begin
+2025-02-10 19:50:42 [INFO] Alien, la résurrection (1997).mkv
+2025-02-10 19:50:42 [INFO] ffmpeg -y -loglevel warning -progress pipe:1 -i /home/moi/mediaHD1/Films/Alien, la résurrection (1997).mkv -map_metadata 0 -map_chapters 0 -map 0 -map -0:4 -c:v copy -c:a copy -c:s copy /home/moi/mediaHD1/Servarr/Transcoding/Alien, la résurrection (1997).mkv
+2025-02-10 19:51:47 [INFO] >>>> Begin
+2025-02-10 19:51:47 [INFO] Alien, la résurrection (1997).mkv
+2025-02-10 19:51:47 [INFO] ffmpeg -y -loglevel warning -progress pipe:1 -i /home/moi/mediaHD1/Films/Alien, la résurrection (1997).mkv -map_metadata 0 -map_chapters 0 -map 0 -map -0:4 -c:v copy -c:a copy -c:s copy /home/moi/mediaHD1/Servarr/Transcoding/Alien, la résurrection (1997).mkv
+2025-02-10 19:52:37 [INFO] >>>> Begin
+2025-02-10 19:52:37 [INFO] Alien, la résurrection (1997).mkv
+2025-02-10 19:52:37 [INFO] ffmpeg -y -loglevel warning -progress pipe:1 -i /home/moi/mediaHD1/Films/Alien, la résurrection (1997).mkv -map_metadata 0 -map_chapters 0 -map 0 -map -0:4 -c:v copy -c:a copy -c:s copy /home/moi/mediaHD1/Servarr/Transcoding/Alien, la résurrection (1997).mkv
+2025-02-10 19:56:02 [INFO] >>>> Begin
+2025-02-10 19:56:02 [INFO] Alien, la résurrection (1997).mkv
+2025-02-10 19:56:02 [INFO] ffmpeg -y -loglevel warning -progress pipe:1 -i /home/moi/mediaHD1/Films/Alien, la résurrection (1997).mkv -map_metadata 0 -map_chapters 0 -map 0 -map -0:4 -c:v copy -c:a copy -c:s copy /home/moi/mediaHD1/Servarr/Transcoding/Alien, la résurrection (1997).mkv
+2025-02-10 19:58:34 [INFO] >>>> Begin
+2025-02-10 19:58:34 [INFO] Alien, la résurrection (1997).mkv
+2025-02-10 19:58:34 [INFO] ffmpeg -y -loglevel warning -progress pipe:1 -i /home/moi/mediaHD1/Films/Alien, la résurrection (1997).mkv -map_metadata 0 -map_chapters 0 -map 0 -map -0:4 -c:v copy -c:a copy -c:s copy /home/moi/mediaHD1/Servarr/Transcoding/Alien, la résurrection (1997).mkv
+2025-02-10 20:00:39 [INFO] gain=0.0Mo duration=(2, 5)
+2025-02-10 20:00:39 [INFO] ---------------------------------------
+2025-02-10 20:00:39 [INFO] >>>> End
+2025-02-10 20:01:28 [INFO] >>>> Begin
+2025-02-10 20:01:28 [INFO] Alien, le huitième passager (1979).mkv
+2025-02-10 20:01:28 [INFO] ffmpeg -y -loglevel warning -progress pipe:1 -i /home/moi/mediaHD1/Films/Alien, le huitième passager (1979).mkv -map_metadata 0 -map_chapters 0 -map 0 -map -0:4 -c:v copy -c:a copy -c:s copy /home/moi/mediaHD1/Servarr/Transcoding/Alien, le huitième passager (1979).mkv
+2025-02-10 20:04:17 [INFO] gain=0.001Mo duration=(2, 48)
+2025-02-10 20:04:17 [INFO] ---------------------------------------
+2025-02-10 20:04:17 [INFO] >>>> End
+2025-02-10 20:06:04 [INFO] >>>> Begin
+2025-02-10 20:06:04 [INFO] Alien- Romulus (2024).mkv
+2025-02-10 20:06:04 [INFO] ffmpeg -y -loglevel warning -progress pipe:1 -i /home/moi/mediaHD1/Films/Alien- Romulus (2024).mkv -map_metadata 0 -map_chapters 0 -map 0 -map -0:2 -map -0:3 -map -0:6 -map -0:7 -map -0:8 -map -0:9 -c:v copy -c:a copy -c:s copy /home/moi/mediaHD1/Servarr/Transcoding/Alien- Romulus (2024).mkv
+2025-02-10 20:22:22 [INFO] gain=-0.743Mo duration=(16, 17)
+2025-02-10 20:22:22 [INFO] ---------------------------------------
+2025-02-10 20:22:22 [INFO] >>>> End
+2025-02-10 20:26:42 [INFO] >>>> Begin
+2025-02-10 20:26:42 [INFO] Aliens, le retour (1986).mkv
+2025-02-10 20:26:42 [INFO] ffmpeg -y -loglevel warning -progress pipe:1 -i /home/moi/mediaHD1/Films/Aliens, le retour (1986).mkv -map_metadata 0 -map_chapters 0 -map 0 -map -0:3 -c:v copy -c:a copy -c:s copy /home/moi/mediaHD1/Servarr/Transcoding/Aliens, le retour (1986).mkv
+2025-02-10 20:32:08 [ERROR] Abandon :
+2025-02-10 20:32:08 [ERROR] [matroska,webm @ 0x631ca0d00900] File extends beyond end of segment.
+2025-02-10 20:32:09 [INFO] ---------------------------------------
+2025-02-10 20:32:09 [INFO] Alien - Covenant (2017).mkv
+2025-02-10 20:32:09 [INFO] ffmpeg -y -loglevel warning -progress pipe:1 -analyzeduration 2000M -probesize 4000M -i /home/moi/mediaHD1/Films/Alien - Covenant (2017).mkv -map_metadata 0 -map_chapters 0 -map 0 -map -0:2 -map -0:4 -map -0:7 -map -0:9 -map -0:10 -map -0:11 -c:v copy -c:a copy -c:s copy /home/moi/mediaHD1/Servarr/Transcoding/Alien - Covenant (2017).mkv
+2025-02-10 20:38:17 [INFO] gain=-0.224Mo duration=(6, 8)
+2025-02-10 20:38:17 [INFO] ---------------------------------------
+2025-02-10 20:38:17 [INFO] Alien³ (1992).mkv
+2025-02-10 20:38:17 [INFO] ffmpeg -y -loglevel warning -progress pipe:1 -i /home/moi/mediaHD1/Films/Alien³ (1992).mkv -map_metadata 0 -map_chapters 0 -map 0 -map -0:3 -c:v copy -c:a copy -c:s copy /home/moi/mediaHD1/Servarr/Transcoding/Alien³ (1992).mkv
+2025-02-10 20:43:23 [ERROR] Abandon :
+2025-02-10 20:43:23 [ERROR] [matroska,webm @ 0x64536b386900] File extends beyond end of segment.
+2025-02-10 20:43:23 [INFO] ---------------------------------------
+2025-02-10 20:43:23 [INFO] Angles d'attaque (2008).mkv
+2025-02-10 20:43:23 [INFO] ffmpeg -y -loglevel warning -progress pipe:1 -i /home/moi/mediaHD1/Films/Angles d'attaque (2008).mkv -map_metadata 0 -map_chapters 0 -map 0 -map -0:2 -map -0:3 -map -0:8 -map -0:9 -map -0:10 -map -0:11 -map -0:12 -c:v copy -c:a copy -c:s copy /home/moi/mediaHD1/Servarr/Transcoding/Angles d'attaque (2008).mkv
+2025-02-10 20:44:33 [INFO] gain=-0.149Mo duration=(1, 9)
+2025-02-10 20:44:33 [INFO] ---------------------------------------
+2025-02-10 20:44:33 [INFO] >>>> End
