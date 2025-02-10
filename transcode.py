@@ -1,4 +1,4 @@
-import json
+# import json
 import datetime as dt
 import subprocess
 import os
@@ -62,20 +62,25 @@ for film in filmlist:
         
         cmd = ["ffmpeg", "-y", "-hide_banner", "-loglevel", "warning"] + cmd_extra + ["-i", infile, "-map_metadata", "0", "-map_chapters", "0", "-map", "0"] + mapfilter + [ "-c:v", "copy", "-c:a", "copy", "-c:s", "copy", outfile]
         # print(cmd)
+        logmessage("INFO", ' '.join(cmd))
         errorcount = run_ffmpeg(cmd)
-        if errorcount>1:
+        if errorcount>0:
             logmessage("ERROR", "Abandon conversion")
             os.remove(outfile)
         else:
             sizebefore = os.stat(infile).st_size
             sizeafter = os.stat(outfile).st_size
-            gain = int((sizeafter - sizebefore)/(1024*1024))/1000
             shutil.move(outfile, infile)
-            duration = (dt.datetime.now() - begindt).minutes
+
+            gain = int((sizeafter - sizebefore)/(1024*1024))/1000
+
+            duration = divmod((dt.datetime.now() - begindt).seconds, 60)
             logmessage("INFO", f"gain={gain}Mo duration={duration}")
+            logmessage("INFO", "---------------------------------------")
             film["todo"]=False
             film["comment"]="Cleaned"
+            savefilmlist(filmlistfile,filmlist)
 
-        if count > 1:
+        if count >=5 :
             break
 logmessage("INFO", ">>>> End")

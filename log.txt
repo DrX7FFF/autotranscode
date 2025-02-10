@@ -1,0 +1,31 @@
+2025-02-10 00:29:30 [INFO] >>>> Begin
+2025-02-10 00:29:30 [INFO] L'Agence (2011).mkv
+2025-02-10 00:34:45 [ERROR] [matroska,webm @ 0x5b05bdd2d500] File extends beyond end of segment.
+2025-02-10 00:55:59 [INFO] >>>> Begin
+2025-02-10 00:55:59 [INFO] 2012 (2009).mkv
+2025-02-10 00:55:59 [INFO] ffmpeg -y -hide_banner -loglevel warning -analyzeduration 2000M -probesize 4000M -i /home/moi/mediaHD1/Films/2012 (2009).mkv -map_metadata 0 -map_chapters 0 -map 0 -map -0:5 -map -0:6 -map -0:7 -map -0:8 -map -0:9 -c:v copy -c:a copy -c:s copy /home/moi/mediaHD1/Servarr/Transcoding/2012 (2009).mkv
+2025-02-10 01:03:36 [INFO] gain=-0.027Mo duration=(7, 37)
+2025-02-10 01:03:36 [INFO] 8 millimètres (1999).mkv
+2025-02-10 01:03:36 [INFO] ffmpeg -y -hide_banner -loglevel warning -i /home/moi/mediaHD1/Films/8 millimètres (1999).mkv -map_metadata 0 -map_chapters 0 -map 0 -map -0:5 -map -0:6 -c:v copy -c:a copy -c:s copy /home/moi/mediaHD1/Servarr/Transcoding/8 millimètres (1999).mkv
+2025-02-10 01:13:34 [INFO] >>>> Begin
+2025-02-10 01:13:34 [INFO] 8 millimètres (1999).mkv
+2025-02-10 01:13:34 [INFO] ffmpeg -y -hide_banner -loglevel warning -i /home/moi/mediaHD1/Films/8 millimètres (1999).mkv -map_metadata 0 -map_chapters 0 -map 0 -map -0:5 -map -0:6 -c:v copy -c:a copy -c:s copy /home/moi/mediaHD1/Servarr/Transcoding/8 millimètres (1999).mkv
+2025-02-10 01:15:53 [INFO] gain=0.001Mo duration=(2, 19)
+2025-02-10 01:15:53 [INFO] ---------------------------------------
+2025-02-10 01:15:53 [INFO] After Earth (2013).mkv
+2025-02-10 01:15:53 [INFO] ffmpeg -y -hide_banner -loglevel warning -analyzeduration 2000M -probesize 4000M -i /home/moi/mediaHD1/Films/After Earth (2013).mkv -map_metadata 0 -map_chapters 0 -map 0 -map -0:1 -map -0:2 -map -0:3 -map -0:4 -map -0:6 -c:v copy -c:a copy -c:s copy /home/moi/mediaHD1/Servarr/Transcoding/After Earth (2013).mkv
+2025-02-10 01:21:37 [INFO] gain=-0.324Mo duration=(5, 44)
+2025-02-10 01:21:37 [INFO] ---------------------------------------
+2025-02-10 01:21:37 [INFO] Air Force One (1997).mkv
+2025-02-10 01:21:37 [INFO] ffmpeg -y -hide_banner -loglevel warning -analyzeduration 2000M -probesize 4000M -i /home/moi/mediaHD1/Films/Air Force One (1997).mkv -map_metadata 0 -map_chapters 0 -map 0 -map -0:2 -map -0:3 -c:v copy -c:a copy -c:s copy /home/moi/mediaHD1/Servarr/Transcoding/Air Force One (1997).mkv
+2025-02-10 01:39:57 [INFO] gain=-0.026Mo duration=(18, 19)
+2025-02-10 01:39:57 [INFO] ---------------------------------------
+2025-02-10 01:39:57 [INFO] Alice au pays des merveilles (2010).mkv
+2025-02-10 01:39:57 [INFO] ffmpeg -y -hide_banner -loglevel warning -i /home/moi/mediaHD1/Films/Alice au pays des merveilles (2010).mkv -map_metadata 0 -map_chapters 0 -map 0 -map -0:3 -map -0:4 -map -0:5 -c:v copy -c:a copy -c:s copy /home/moi/mediaHD1/Servarr/Transcoding/Alice au pays des merveilles (2010).mkv
+2025-02-10 01:45:00 [INFO] gain=0.0Mo duration=(5, 3)
+2025-02-10 01:45:00 [INFO] ---------------------------------------
+2025-02-10 01:45:00 [INFO] Alice de l'autre côté du miroir (2016).mkv
+2025-02-10 01:45:00 [INFO] ffmpeg -y -hide_banner -loglevel warning -i /home/moi/mediaHD1/Films/Alice de l'autre côté du miroir (2016).mkv -map_metadata 0 -map_chapters 0 -map 0 -map -0:4 -map -0:5 -map -0:6 -map -0:7 -map -0:8 -c:v copy -c:a copy -c:s copy /home/moi/mediaHD1/Servarr/Transcoding/Alice de l'autre côté du miroir (2016).mkv
+2025-02-10 01:50:29 [INFO] gain=0.0Mo duration=(5, 28)
+2025-02-10 01:50:29 [INFO] ---------------------------------------
+2025-02-10 01:50:29 [INFO] >>>> End

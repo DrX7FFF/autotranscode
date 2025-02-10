@@ -3,7 +3,6 @@ import sys
 import subprocess
 import json
 import datetime
-import csv
 import re
 import unicodedata
 from common import *
@@ -14,35 +13,6 @@ if modetest:
     moviespath = "./examples"
 else:
     moviespath = "/home/moi/mediaHD1/Films"
-
-def export_to_csv(data, filename="output.csv"):
-    """ Exporte une structure JSON dynamique en CSV tout en respectant l'ordre des clés. """
-
-    # Collecter toutes les clés sans modifier l'ordre
-    first_level_keys = []
-    stream_keys = []
-
-    for item in data:
-        for key in item.keys():
-            if key not in first_level_keys and key != "streams":
-                first_level_keys.append(key)
-        for stream in item.get("streams", []):
-            for key in stream.keys():
-                if key not in stream_keys:
-                    stream_keys.append(key)
-
-    all_keys = first_level_keys + stream_keys
-
-    with open(filename, "w", newline="", encoding="utf-8") as f:
-        writer = csv.DictWriter(f, fieldnames=all_keys, extrasaction="ignore")
-        writer.writeheader()
-
-        for item in data:
-            # Transformer les streams en un format aplati
-            for stream in item.get("streams", [{}]):
-                row = {key: item.get(key, "") for key in first_level_keys}
-                row.update({key: stream.get(key, "") for key in stream_keys})
-                writer.writerow(row)
 
 to_keep = {
     "common":{"remove":"", "index":"index", "codec_type":"codec_type", "codec_name":"codec_name"}, 
@@ -63,7 +33,7 @@ def normalize_string(s):
     return (''.join(c for c in unicodedata.normalize('NFKD', s) if not unicodedata.combining(c))).upper()
 
 def stream_treatment(stream):
-    pattern = r"\b(VFQ|AD|QUEBECOIS)\b"
+    pattern = r"\b(VFQ|AD|SDH|QUEBECOIS)\b"
     stream["remove"] = False
     match stream["codec_type"]:
         case "video":
@@ -75,7 +45,7 @@ def stream_treatment(stream):
             if stream["codec_name"] in ["mjpeg", "png"] or stream["frame_rate"] == "0/0":
                 stream["remove"] = True
         case "audio":
-            if not stream["language"] in ["fre", "fra", "und", "", None]:
+            if not stream["language"] in ["fre", "fra", "und", "mis", "", None]:
                 stream["remove"] = True
             else:
                 if stream["title"] != None:
@@ -83,8 +53,13 @@ def stream_treatment(stream):
                     if match:
                         stream["remove"]=True
         case "subtitle":
-            if stream["language"] != "fre" and stream["language"] != "fra" and stream["language"] != "":
+            if not stream["language"] in ["fre", "fra", "und", "mis", "", None]:
                 stream["remove"] = True
+            else:
+                if stream["title"] != None:
+                    match = re.findall(pattern, normalize_string(stream["title"]))
+                    if match:
+                        stream["remove"]=True
         case default:
             stream["remove"] = True
     return stream
@@ -145,23 +120,28 @@ def analyse_media(filename, filepath, index):
     ### Check video stream
     video_streams = [s for s in res["streams"] if s.get("codec_type") == "video" and not s.get("remove")]
     audio_streams = [s for s in res["streams"] if s.get("codec_type") == "audio" and not s.get("remove")]
+    subtitle_streams_removed = [s for s in res["streams"] if s.get("codec_type") == "subtitle" and s.get("remove")]
+    subtitle_streams_keeped = [s for s in res["streams"] if s.get("codec_type") == "subtitle" and not s.get("remove")]
 
     if filename.find("[3D]") != -1:
-        res["comment"] = "Film 3D"
         res["status"] = "Ign"
+        res["comment"] = "Film 3D"
     elif not video_streams:
+        res["status"] = "Err"
         res["comment"] = "Pas de flux vidéo"
-        res["status"] = "Err"
     elif len(video_streams) > 1:
-        res["comment"] = "Plusieurs flux vidéo"
         res["status"] = "Err"
+        res["comment"] = "Plusieurs flux vidéo"
     ### Check audio stream
     elif not audio_streams:
-        res["comment"] = "Pas de flux audio"
         res["status"] = "Err"
+        res["comment"] = "Pas de flux audio"
+    elif len(subtitle_streams_removed)>0 and len(subtitle_streams_keeped)==0:
+        res["status"] = "Err"
+        res["comment"] = "Plus de soustitres"
     else:
         streams_remove = [s for s in res["streams"] if s.get("remove")==True]
-        if len(streams_remove) > 1:
+        if len(streams_remove) > 0:
             res["comment"] = "To clean"
             res["status"] = "ToDo"
             res["todo"] = True
@@ -183,6 +163,7 @@ def analyse_media(filename, filepath, index):
 
     return res
 
+
 filmlist = []
 for filename in os.listdir(moviespath) :
     fullfilename = os.path.join(moviespath, filename)
@@ -192,7 +173,4 @@ for filename in os.listdir(moviespath) :
         filmlist.append(res)
 
 savefilmlist(filmlistfile,filmlist)
-
-
-# export_to_csv(filmlist, "/home/moi/GoogleDrive/test/checktemp.csv")
 export_to_csv(filmlist, "checktemp.csv")
