@@ -62,3 +62,117 @@
 2025-02-10 20:44:33 [INFO] gain=-0.149Mo duration=(1, 9)
 2025-02-10 20:44:33 [INFO] ---------------------------------------
 2025-02-10 20:44:33 [INFO] >>>> End
+2025-02-10 21:16:06 [INFO] >>>> Begin
+2025-02-10 21:16:06 [INFO] Animatrix (2003).mkv
+2025-02-10 21:16:06 [INFO] ffmpeg -y -loglevel warning -progress pipe:1 -i /home/moi/mediaHD1/Films/Animatrix (2003).mkv -map_metadata 0 -map_chapters 0 -map 0 -map -0:2 -map -0:5 -c:v copy -c:a copy -c:s copy /home/moi/mediaHD1/Servarr/Transcoding/Animatrix (2003).mkv
+2025-02-10 21:18:18 [ERROR] [matroska,webm @ 0x557a7fb70940] File extends beyond end of segment.
+2025-02-10 21:18:18 [INFO] ---------------------------------------
+2025-02-10 21:18:18 [INFO] Ant-Man (2015).mkv
+2025-02-10 21:18:18 [INFO] ffmpeg -y -loglevel warning -progress pipe:1 -i /home/moi/mediaHD1/Films/Ant-Man (2015).mkv -map_metadata 0 -map_chapters 0 -map 0 -map -0:4 -map -0:5 -c:v copy -c:a copy -c:s copy /home/moi/mediaHD1/Servarr/Transcoding/Ant-Man (2015).mkv
+2025-02-10 21:22:35 [INFO] gain=0.001Mo duration=(4, 17)
+2025-02-10 21:22:35 [INFO] ---------------------------------------
+2025-02-10 21:22:35 [INFO] Ant-Man et la Guêpe (2018).mkv
+2025-02-10 21:22:35 [INFO] ffmpeg -y -loglevel warning -progress pipe:1 -analyzeduration 2000M -probesize 4000M -i /home/moi/mediaHD1/Films/Ant-Man et la Guêpe (2018).mkv -map_metadata 0 -map_chapters 0 -map 0 -map -0:5 -map -0:6 -map -0:7 -map -0:8 -map -0:9 -c:v copy -c:a copy -c:s copy /home/moi/mediaHD1/Servarr/Transcoding/Ant-Man et la Guêpe (2018).mkv
+2025-02-10 21:27:57 [INFO] gain=-0.041Mo duration=(5, 21)
+2025-02-10 21:27:57 [INFO] ---------------------------------------
+2025-02-10 21:27:57 [INFO] Antitrust (2001).mkv
+2025-02-10 21:27:57 [INFO] ffmpeg -y -loglevel warning -progress pipe:1 -i /home/moi/mediaHD1/Films/Antitrust (2001).mkv -map_metadata 0 -map_chapters 0 -map 0 -map -0:2 -c:v copy -c:a copy -c:s copy /home/moi/mediaHD1/Servarr/Transcoding/Antitrust (2001).mkv
+2025-02-10 21:32:46 [INFO] gain=-0.15Mo duration=(4, 49)
+2025-02-10 21:32:46 [INFO] ---------------------------------------
+2025-02-10 21:32:46 [INFO] >>>> End
+2025-02-10 21:43:26 [INFO] >>>> Begin
+2025-02-10 21:43:26 [INFO] Armageddon (1998).mkv
+2025-02-10 21:43:26 [INFO] ffmpeg -y -loglevel warning -progress pipe:1 -analyzeduration 2000M -probesize 4000M -i /home/moi/mediaHD1/Films/Armageddon (1998).mkv -map_metadata 0 -map_chapters 0 -map 0 -map -0:1 -map -0:3 -map -0:4 -map -0:5 -map -0:6 -map -0:7 -map -0:8 -map -0:9 -map -0:10 -map -0:11 -map -0:14 -map -0:15 -map -0:16 -map -0:17 -map -0:18 -map -0:19 -map -0:20 -map -0:21 -map -0:22 -map -0:23 -map -0:24 -map -0:25 -map -0:26 -map -0:27 -map -0:28 -map -0:29 -map -0:30 -map -0:31 -map -0:32 -map -0:33 -map -0:34 -map -0:35 -map -0:36 -map -0:37 -map -0:38 -map -0:39 -map -0:40 -map -0:41 -map -0:42 -map -0:43 -map -0:44 -map -0:45 -c:v copy -c:a copy -c:s copy /home/moi/mediaHD1/Servarr/Transcoding/Armageddon (1998).mkv
+2025-02-10 23:01:38 [INFO] gain=-12.411Mo duration=(78, 12)
+2025-02-10 23:01:38 [INFO] ---------------------------------------
+2025-02-10 23:01:38 [INFO] Asterix & Obelix - Mission Cleopatra (2002).mkv
+2025-02-10 23:01:38 [INFO] ffmpeg -y -loglevel warning -progress pipe:1 -i /home/moi/mediaHD1/Films/Asterix & Obelix - Mission Cleopatra (2002).mkv -map_metadata 0 -map_chapters 0 -map 0 -map -0:3 -c:v copy -c:a copy -c:s copy /home/moi/mediaHD1/Servarr/Transcoding/Asterix & Obelix - Mission Cleopatra (2002).mkv
+2025-02-10 23:18:11 [INFO] gain=0.001Mo duration=(16, 32)
+2025-02-10 23:18:11 [INFO] ---------------------------------------
+2025-02-10 23:18:11 [INFO] Atlas (2024).mkv
+2025-02-10 23:18:11 [INFO] ffmpeg -y -loglevel warning -progress pipe:1 -i /home/moi/mediaHD1/Films/Atlas (2024).mkv -map_metadata 0 -map_chapters 0 -map 0 -map -0:2 -map -0:5 -c:v copy -c:a copy -c:s copy /home/moi/mediaHD1/Servarr/Transcoding/Atlas (2024).mkv
+2025-02-10 23:28:20 [INFO] gain=-0.551Mo duration=(10, 8)
+2025-02-10 23:28:20 [INFO] ---------------------------------------
+2025-02-10 23:28:20 [INFO] Beauté cachée (2016).mkv
+2025-02-10 23:28:20 [INFO] ffmpeg -y -loglevel warning -progress pipe:1 -i /home/moi/mediaHD1/Films/Beauté cachée (2016).mkv -map_metadata 0 -map_chapters 0 -map 0 -map -0:4 -map -0:5 -map -0:6 -c:v copy -c:a copy -c:s copy /home/moi/mediaHD1/Servarr/Transcoding/Beauté cachée (2016).mkv
+2025-02-10 23:28:20 [ERROR] [png @ 0x5a9340a65f00] unknown cHRM primaries
+2025-02-10 23:28:20 [INFO] ---------------------------------------
+2025-02-10 23:28:20 [INFO] >>>> End
+2025-02-10 23:36:21 [INFO] >>>> Begin
+2025-02-10 23:36:21 [INFO] Benjamin Gates et le Livre des Secrets (2007).mp4
+2025-02-10 23:36:21 [INFO] ffmpeg -y -loglevel warning -progress pipe:1 -i /home/moi/mediaHD1/Films/Benjamin Gates et le Livre des Secrets (2007).mp4 -map_metadata 0 -map_chapters 0 -map 0 -map -0:2 -c:v copy -c:a copy -c:s copy /home/moi/mediaHD1/Servarr/Transcoding/Benjamin Gates et le Livre des Secrets (2007).mp4
+2025-02-10 23:39:27 [INFO] gain=0.0Mo duration=(3, 5)
+2025-02-10 23:39:27 [INFO] ---------------------------------------
+2025-02-10 23:39:27 [INFO] Benjamin Gates et le Trésor des Templiers (2004).mp4
+2025-02-10 23:39:27 [INFO] ffmpeg -y -loglevel warning -progress pipe:1 -i /home/moi/mediaHD1/Films/Benjamin Gates et le Trésor des Templiers (2004).mp4 -map_metadata 0 -map_chapters 0 -map 0 -map -0:2 -c:v copy -c:a copy -c:s copy /home/moi/mediaHD1/Servarr/Transcoding/Benjamin Gates et le Trésor des Templiers (2004).mp4
+2025-02-10 23:42:57 [INFO] gain=0.0Mo duration=(3, 29)
+2025-02-10 23:42:57 [INFO] ---------------------------------------
+2025-02-10 23:42:57 [INFO] Black Widow (2021).mkv
+2025-02-10 23:42:57 [INFO] ffmpeg -y -loglevel warning -progress pipe:1 -i /home/moi/mediaHD1/Films/Black Widow (2021).mkv -map_metadata 0 -map_chapters 0 -map 0 -map -0:4 -map -0:5 -map -0:6 -map -0:7 -map -0:8 -map -0:9 -map -0:10 -map -0:12 -map -0:13 -map -0:14 -map -0:15 -map -0:16 -map -0:18 -map -0:19 -c:v copy -c:a copy -c:s copy /home/moi/mediaHD1/Servarr/Transcoding/Black Widow (2021).mkv
+2025-02-10 23:49:37 [INFO] gain=0.0Mo duration=(6, 40)
+2025-02-10 23:49:37 [INFO] ---------------------------------------
+2025-02-10 23:49:37 [INFO] Blade (1998).mkv
+2025-02-10 23:49:37 [INFO] ffmpeg -y -loglevel warning -progress pipe:1 -i /home/moi/mediaHD1/Films/Blade (1998).mkv -map_metadata 0 -map_chapters 0 -map 0 -map -0:4 -c:v copy -c:a copy -c:s copy /home/moi/mediaHD1/Servarr/Transcoding/Blade (1998).mkv
+2025-02-10 23:54:37 [INFO] gain=0.001Mo duration=(5, 0)
+2025-02-10 23:54:37 [INFO] ---------------------------------------
+2025-02-10 23:54:37 [INFO] >>>> End
+2025-02-11 00:47:56 [INFO] >>>> Begin
+2025-02-11 00:47:56 [INFO] Blitz (2011).mkv
+2025-02-11 00:47:56 [INFO] ffmpeg -y -loglevel warning -progress pipe:1 -analyzeduration 2000M -probesize 4000M -i /home/moi/mediaHD1/Films/Blitz (2011).mkv -map_metadata 0 -map_chapters 0 -map 0 -map -0:3 -map -0:4 -map -0:5 -map -0:6 -c:v copy -c:a copy -c:s copy /home/moi/mediaHD1/Servarr/Transcoding/Blitz (2011).mkv
+2025-02-11 00:51:42 [INFO] gain=-0.003Mo duration=(3, 45)
+2025-02-11 00:51:42 [INFO] ---------------------------------------
+2025-02-11 00:51:42 [INFO] Carry-On (2024).mkv
+2025-02-11 00:51:42 [INFO] ffmpeg -y -loglevel warning -progress pipe:1 -i /home/moi/mediaHD1/Films/Carry-On (2024).mkv -map_metadata 0 -map_chapters 0 -map 0 -map -0:2 -map -0:5 -c:v copy -c:a copy -c:s copy /home/moi/mediaHD1/Servarr/Transcoding/Carry-On (2024).mkv
+2025-02-11 01:01:53 [INFO] gain=-0.549Mo duration=(10, 11)
+2025-02-11 01:01:53 [INFO] ---------------------------------------
+2025-02-11 01:01:53 [INFO] Chute libre (1993).mkv
+2025-02-11 01:01:53 [INFO] ffmpeg -y -loglevel warning -progress pipe:1 -i /home/moi/mediaHD1/Films/Chute libre (1993).mkv -map_metadata 0 -map_chapters 0 -map 0 -map -0:3 -c:v copy -c:a copy -c:s copy /home/moi/mediaHD1/Servarr/Transcoding/Chute libre (1993).mkv
+2025-02-11 01:06:30 [INFO] gain=-0.156Mo duration=(4, 36)
+2025-02-11 01:06:30 [INFO] ---------------------------------------
+2025-02-11 01:06:30 [INFO] Civil War (2024).mkv
+2025-02-11 01:06:30 [INFO] ffmpeg -y -loglevel warning -progress pipe:1 -i /home/moi/mediaHD1/Films/Civil War (2024).mkv -map_metadata 0 -map_chapters 0 -map 0 -map -0:2 -map -0:5 -c:v copy -c:a copy -c:s copy /home/moi/mediaHD1/Servarr/Transcoding/Civil War (2024).mkv
+2025-02-11 01:23:00 [INFO] gain=-0.176Mo duration=(16, 30)
+2025-02-11 01:23:00 [INFO] ---------------------------------------
+2025-02-11 01:23:00 [INFO] >>>> End
+2025-02-11 01:39:07 [INFO] >>>> Begin
+2025-02-11 01:39:07 [INFO] Da Vinci Code (2006).mkv
+2025-02-11 01:39:07 [INFO] ffmpeg -y -loglevel warning -progress pipe:1 -analyzeduration 2000M -probesize 4000M -i /home/moi/mediaHD1/Films/Da Vinci Code (2006).mkv -map_metadata 0 -map_chapters 0 -map 0 -map -0:1 -c:v copy -c:a copy -c:s copy /home/moi/mediaHD1/Servarr/Transcoding/Da Vinci Code (2006).mkv
+2025-02-11 01:46:34 [INFO] gain=-0.561Mo duration=(7, 27)
+2025-02-11 01:46:34 [INFO] ---------------------------------------
+2025-02-11 01:46:34 [INFO] Avengers (2012).mp4
+2025-02-11 01:46:34 [INFO] ffmpeg -y -loglevel warning -progress pipe:1 -i /home/moi/mediaHD1/Films/Avengers (2012).mp4 -map_metadata 0 -map_chapters 0 -map 0 -map -0:2 -c:v copy -c:a copy -c:s copy /home/moi/mediaHD1/Servarr/Transcoding/Avengers (2012).mp4
+2025-02-11 01:50:31 [INFO] gain=0.0Mo duration=(3, 56)
+2025-02-11 01:50:31 [INFO] ---------------------------------------
+2025-02-11 01:50:31 [INFO] Je suis une légende (2007).mkv
+2025-02-11 01:50:31 [INFO] ffmpeg -y -loglevel warning -progress pipe:1 -analyzeduration 2000M -probesize 4000M -i /home/moi/mediaHD1/Films/Je suis une légende (2007).mkv -map_metadata 0 -map_chapters 0 -map 0 -map -0:4 -c:v copy -c:a copy -c:s copy /home/moi/mediaHD1/Servarr/Transcoding/Je suis une légende (2007).mkv
+2025-02-11 01:57:37 [INFO] gain=-0.005Mo duration=(7, 6)
+2025-02-11 01:57:37 [INFO] ---------------------------------------
+2025-02-11 01:57:37 [INFO] Deadpool 2 (2018).mkv
+2025-02-11 01:57:37 [INFO] ffmpeg -y -loglevel warning -progress pipe:1 -analyzeduration 2000M -probesize 4000M -i /home/moi/mediaHD1/Films/Deadpool 2 (2018).mkv -map_metadata 0 -map_chapters 0 -map 0 -map -0:2 -map -0:5 -map -0:6 -c:v copy -c:a copy -c:s copy /home/moi/mediaHD1/Servarr/Transcoding/Deadpool 2 (2018).mkv
+2025-02-11 02:03:13 [INFO] gain=-0.407Mo duration=(5, 35)
+2025-02-11 02:03:13 [INFO] ---------------------------------------
+2025-02-11 02:03:13 [INFO] Deepwater (2016).mkv
+2025-02-11 02:03:13 [INFO] ffmpeg -y -loglevel warning -progress pipe:1 -i /home/moi/mediaHD1/Films/Deepwater (2016).mkv -map_metadata 0 -map_chapters 0 -map 0 -map -0:2 -map -0:3 -map -0:7 -map -0:8 -map -0:9 -c:v copy -c:a copy -c:s copy /home/moi/mediaHD1/Servarr/Transcoding/Deepwater (2016).mkv
+2025-02-11 02:08:27 [INFO] gain=-0.687Mo duration=(5, 13)
+2025-02-11 02:08:27 [INFO] ---------------------------------------
+2025-02-11 02:08:27 [INFO] Divergente (2014).mkv
+2025-02-11 02:08:27 [INFO] ffmpeg -y -loglevel warning -progress pipe:1 -i /home/moi/mediaHD1/Films/Divergente (2014).mkv -map_metadata 0 -map_chapters 0 -map 0 -map -0:3 -c:v copy -c:a copy -c:s copy /home/moi/mediaHD1/Servarr/Transcoding/Divergente (2014).mkv
+2025-02-11 02:13:39 [INFO] gain=0.001Mo duration=(5, 12)
+2025-02-11 02:13:39 [INFO] ---------------------------------------
+2025-02-11 02:13:39 [INFO] Divergente 2 - L'Insurrection (2015).mkv
+2025-02-11 02:13:39 [INFO] ffmpeg -y -loglevel warning -progress pipe:1 -i /home/moi/mediaHD1/Films/Divergente 2 - L'Insurrection (2015).mkv -map_metadata 0 -map_chapters 0 -map 0 -map -0:3 -c:v copy -c:a copy -c:s copy /home/moi/mediaHD1/Servarr/Transcoding/Divergente 2 - L'Insurrection (2015).mkv
+2025-02-11 02:17:50 [INFO] gain=0.0Mo duration=(4, 10)
+2025-02-11 02:17:50 [INFO] ---------------------------------------
+2025-02-11 02:17:50 [INFO] Divergente 3 - Au-delà du mur (2016).mkv
+2025-02-11 02:17:50 [INFO] ffmpeg -y -loglevel warning -progress pipe:1 -analyzeduration 2000M -probesize 4000M -i /home/moi/mediaHD1/Films/Divergente 3 - Au-delà du mur (2016).mkv -map_metadata 0 -map_chapters 0 -map 0 -map -0:3 -map -0:5 -map -0:6 -map -0:7 -map -0:8 -c:v copy -c:a copy -c:s copy /home/moi/mediaHD1/Servarr/Transcoding/Divergente 3 - Au-delà du mur (2016).mkv
+2025-02-11 02:22:04 [INFO] gain=-0.009Mo duration=(4, 13)
+2025-02-11 02:22:04 [INFO] ---------------------------------------
+2025-02-11 02:22:04 [INFO] Django Unchained (2012).mkv
+2025-02-11 02:22:04 [INFO] ffmpeg -y -loglevel warning -progress pipe:1 -i /home/moi/mediaHD1/Films/Django Unchained (2012).mkv -map_metadata 0 -map_chapters 0 -map 0 -map -0:2 -map -0:5 -c:v copy -c:a copy -c:s copy /home/moi/mediaHD1/Servarr/Transcoding/Django Unchained (2012).mkv
+2025-02-11 02:47:28 [INFO] gain=-3.289Mo duration=(25, 24)
+2025-02-11 02:47:28 [INFO] ---------------------------------------
+2025-02-11 02:47:28 [INFO] Doctor Strange (2016).mkv
+2025-02-11 02:47:28 [INFO] ffmpeg -y -loglevel warning -progress pipe:1 -i /home/moi/mediaHD1/Films/Doctor Strange (2016).mkv -map_metadata 0 -map_chapters 0 -map 0 -map -0:3 -c:v copy -c:a copy -c:s copy /home/moi/mediaHD1/Servarr/Transcoding/Doctor Strange (2016).mkv
+2025-02-11 02:51:11 [INFO] gain=0.0Mo duration=(3, 42)
+2025-02-11 02:51:11 [INFO] ---------------------------------------
+2025-02-11 02:51:11 [INFO] >>>> End

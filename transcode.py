@@ -103,6 +103,6 @@ for film in todolist:
 
         save_todo(todolist)
         logmessage("INFO", "---------------------------------------")
-        if count >=4 :
+        if count >=10 :
             break
 logmessage("INFO", ">>>> End")

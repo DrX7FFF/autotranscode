@@ -142,21 +142,21 @@
 	{ "remove":true,	"index":10,	"codec_type":"video",	"codec_name":"mjpeg",	"resolution":"754x1024",	"width":754,	"height":1024,	"frame_rate":"0/0",	"profile":"Baseline" },
 	{ "remove":true,	"index":11,	"codec_type":"video",	"codec_name":"mjpeg",	"resolution":"3240x2175",	"width":3240,	"height":2175,	"frame_rate":"0/0",	"profile":"Progressive" },
 	{ "remove":true,	"index":12,	"codec_type":"video",	"codec_name":"mjpeg",	"resolution":"760x1125",	"width":760,	"height":1125,	"frame_rate":"0/0",	"profile":"Baseline" }] },
-{ "todo":true,	"filename":"Animatrix (2003).mkv",	"status":"ToDo",	"comment":"To clean",	"streams":[
+{ "todo":false,	"filename":"Animatrix (2003).mkv",	"status":"ToDo",	"comment":"Error durring processing",	"streams":[
 	{ "remove":false,	"index":0,	"codec_type":"video",	"codec_name":"h264",	"resolution":"1080p",	"width":1912,	"height":802,	"frame_rate":"24000/1001",	"profile":"High" },
 	{ "remove":false,	"index":1,	"codec_type":"audio",	"codec_name":"ac3",	"language":"fre",	"title":"VFF AC3 5.1 @448kbps",	"channel":"5.1(side)" },
 	{ "remove":true,	"index":2,	"codec_type":"audio",	"codec_name":"ac3",	"language":"eng",	"title":"ENG AC3 5.1 @448kbps",	"channel":"5.1(side)" },
 	{ "remove":false,	"index":3,	"codec_type":"subtitle",	"codec_name":"subrip",	"language":"fre",	"title":"FR Forced" },
 	{ "remove":false,	"index":4,	"codec_type":"subtitle",	"codec_name":"subrip",	"language":"fre",	"title":"FR Full" },
 	{ "remove":true,	"index":5,	"codec_type":"subtitle",	"codec_name":"subrip",	"language":"eng",	"title":"ENG Full" }] },
-{ "todo":true,	"filename":"Ant-Man (2015).mkv",	"status":"ToDo",	"comment":"To clean",	"streams":[
+{ "todo":false,	"filename":"Ant-Man (2015).mkv",	"status":"ToDo",	"comment":"Done :-)",	"streams":[
 	{ "remove":false,	"index":0,	"codec_type":"video",	"codec_name":"h264",	"resolution":"1080p",	"width":1920,	"height":1036,	"frame_rate":"24000/1001",	"profile":"High" },
 	{ "remove":false,	"index":1,	"codec_type":"audio",	"codec_name":"ac3",	"language":"fre",	"title":"AC3-5.1-VFF",	"channel":"5.1(side)" },
 	{ "remove":false,	"index":2,	"codec_type":"subtitle",	"codec_name":"subrip",	"language":"fre",	"title":"forced" },
 	{ "remove":false,	"index":3,	"codec_type":"subtitle",	"codec_name":"subrip",	"language":"fre",	"title":"full" },
 	{ "remove":true,	"index":4,	"codec_type":"subtitle",	"codec_name":"subrip",	"language":"eng",	"title":"full" },
 	{ "remove":true,	"index":5,	"codec_type":"subtitle",	"codec_name":"subrip",	"language":"eng",	"title":"full SDH" }] },
-{ "todo":true,	"filename":"Ant-Man et la Guêpe (2018).mkv",	"status":"ToDo",	"comment":"To clean",	"streams":[
+{ "todo":false,	"filename":"Ant-Man et la Guêpe (2018).mkv",	"status":"ToDo",	"comment":"Done :-)",	"streams":[
 	{ "remove":false,	"index":0,	"codec_type":"video",	"codec_name":"h264",	"resolution":"1080p",	"width":1920,	"height":804,	"frame_rate":"24000/1001",	"profile":"High" },
 	{ "remove":false,	"index":1,	"codec_type":"audio",	"codec_name":"ac3",	"language":"fre",	"title":"AC3-5.1-VFF",	"channel":"5.1(side)" },
 	{ "remove":false,	"index":2,	"codec_type":"subtitle",	"codec_name":"subrip",	"language":"fre",	"title":"forced" },
@@ -167,7 +167,7 @@
 	{ "remove":true,	"index":7,	"codec_type":"subtitle",	"codec_name":"subrip",	"language":"eng",	"title":"SDH" },
 	{ "remove":true,	"index":8,	"codec_type":"subtitle",	"codec_name":"hdmv_pgs_subtitle",	"language":"eng",	"title":"commentary" },
 	{ "remove":true,	"index":9,	"codec_type":"video",	"codec_name":"mjpeg",	"resolution":"360p",	"width":640,	"height":360,	"frame_rate":"0/0",	"profile":"Baseline" }] },
-{ "todo":true,	"filename":"Antitrust (2001).mkv",	"status":"ToDo",	"comment":"To clean",	"streams":[
+{ "todo":false,	"filename":"Antitrust (2001).mkv",	"status":"ToDo",	"comment":"Done :-)",	"streams":[
 	{ "remove":false,	"index":0,	"codec_type":"video",	"codec_name":"h264",	"resolution":"1080p",	"width":1920,	"height":824,	"frame_rate":"24000/1001",	"profile":"High" },
 	{ "remove":false,	"index":1,	"codec_type":"audio",	"codec_name":"aac",	"language":"fre",	"title":"Francais VFF AAC 2.0",	"channel":"stereo" },
 	{ "remove":true,	"index":2,	"codec_type":"audio",	"codec_name":"ac3",	"language":"fre",	"title":"Francais VFQ AC3 2.0",	"channel":"stereo" },
@@ -186,7 +186,7 @@
 	{ "remove":false,	"index":1,	"codec_type":"audio",	"codec_name":"eac3",	"language":"fre",	"title":"VFi",	"channel":"5.1(side)" },
 	{ "remove":false,	"index":2,	"codec_type":"subtitle",	"codec_name":"subrip",	"language":"fre",	"title":"VFi Forced" },
 	{ "remove":false,	"index":3,	"codec_type":"subtitle",	"codec_name":"subrip",	"language":"fre",	"title":"VFi" }] },
-{ "todo":true,	"filename":"Armageddon (1998).mkv",	"status":"ToDo",	"comment":"To clean",	"streams":[
+{ "todo":false,	"filename":"Armageddon (1998).mkv",	"status":"ToDo",	"comment":"Done :-)",	"streams":[
 	{ "remove":false,	"index":0,	"codec_type":"video",	"codec_name":"h264",	"resolution":"1080p",	"width":1920,	"height":1080,	"frame_rate":"24000/1001",	"profile":"High" },
 	{ "remove":true,	"index":1,	"codec_type":"audio",	"codec_name":"dts",	"language":"eng",	"title":"English [DTS-HD MA 5.1]",	"channel":"5.1(side)" },
 	{ "remove":false,	"index":2,	"codec_type":"audio",	"codec_name":"dts",	"language":"fre",	"title":"French (France) [DTS 5.1]",	"channel":"5.1(side)" },
@@ -248,13 +248,13 @@
 	{ "remove":false,	"index":1,	"codec_type":"audio",	"codec_name":"eac3",	"language":"fre",	"title":"VFF",	"channel":"5.1(side)" },
 	{ "remove":false,	"index":2,	"codec_type":"subtitle",	"codec_name":"subrip",	"language":"fre",	"title":"VFF Forced" },
 	{ "remove":false,	"index":3,	"codec_type":"subtitle",	"codec_name":"subrip",	"language":"fre",	"title":"VFF" }] },
-{ "todo":true,	"filename":"Asterix & Obelix - Mission Cleopatra (2002).mkv",	"status":"ToDo",	"comment":"To clean",	"streams":[
+{ "todo":false,	"filename":"Asterix & Obelix - Mission Cleopatra (2002).mkv",	"status":"ToDo",	"comment":"Done :-)",	"streams":[
 	{ "remove":false,	"index":0,	"codec_type":"video",	"codec_name":"hevc",	"resolution":"1080p",	"width":1920,	"height":816,	"frame_rate":"24/1",	"profile":"Main 10" },
 	{ "remove":false,	"index":1,	"codec_type":"audio",	"codec_name":"aac",	"language":"fre",	"title":null,	"channel":"7.1" },
 	{ "remove":false,	"index":2,	"codec_type":"audio",	"codec_name":"aac",	"language":"fre",	"title":"Commentary",	"channel":"stereo" },
 	{ "remove":true,	"index":3,	"codec_type":"subtitle",	"codec_name":"dvd_subtitle",	"language":"eng",	"title":null },
 	{ "remove":false,	"index":4,	"codec_type":"subtitle",	"codec_name":"dvd_subtitle",	"language":"fre",	"title":null }] },
-{ "todo":true,	"filename":"Atlas (2024).mkv",	"status":"ToDo",	"comment":"To clean",	"streams":[
+{ "todo":false,	"filename":"Atlas (2024).mkv",	"status":"ToDo",	"comment":"Done :-)",	"streams":[
 	{ "remove":false,	"index":0,	"codec_type":"video",	"codec_name":"h264",	"resolution":"1080p",	"width":1920,	"height":1080,	"frame_rate":"24/1",	"profile":"Main" },
 	{ "remove":false,	"index":1,	"codec_type":"audio",	"codec_name":"eac3",	"language":"fre",	"title":null,	"channel":"5.1(side)" },
 	{ "remove":true,	"index":2,	"codec_type":"audio",	"codec_name":"eac3",	"language":"fre",	"title":"AD",	"channel":"5.1(side)" },
@@ -272,7 +272,7 @@
 { "todo":false,	"filename":"Batman v Superman - L'Aube de la Justice (2016).avi",	"status":"",	"comment":"",	"streams":[
 	{ "remove":false,	"index":0,	"codec_type":"video",	"codec_name":"mpeg4",	"resolution":"720x300",	"width":720,	"height":300,	"frame_rate":"2997/125",	"profile":"Simple Profile" },
 	{ "remove":false,	"index":1,	"codec_type":"audio",	"codec_name":"mp3",	"language":null,	"title":null,	"channel":"stereo" }] },
-{ "todo":true,	"filename":"Beauté cachée (2016).mkv",	"status":"ToDo",	"comment":"To clean",	"streams":[
+{ "todo":false,	"filename":"Beauté cachée (2016).mkv",	"status":"ToDo",	"comment":"Error durring processing",	"streams":[
 	{ "remove":false,	"index":0,	"codec_type":"video",	"codec_name":"h264",	"resolution":"1080p",	"width":1920,	"height":800,	"frame_rate":"24000/1001",	"profile":"High" },
 	{ "remove":false,	"index":1,	"codec_type":"audio",	"codec_name":"ac3",	"language":"fre",	"title":"Français VFF AC3 5.1 @ 448Kbps",	"channel":"5.1(side)" },
 	{ "remove":false,	"index":2,	"codec_type":"subtitle",	"codec_name":"subrip",	"language":"fre",	"title":"Français Forcés" },
@@ -280,11 +280,11 @@
 	{ "remove":true,	"index":4,	"codec_type":"subtitle",	"codec_name":"subrip",	"language":"eng",	"title":"Anglais Complets" },
 	{ "remove":true,	"index":5,	"codec_type":"subtitle",	"codec_name":"subrip",	"language":"eng",	"title":"Anglais Complets Colored" },
 	{ "remove":true,	"index":6,	"codec_type":"video",	"codec_name":"png",	"resolution":"1000x562",	"width":1000,	"height":562,	"frame_rate":"0/0",	"profile":null }] },
-{ "todo":true,	"filename":"Benjamin Gates et le Livre des Secrets (2007).mp4",	"status":"ToDo",	"comment":"To clean",	"streams":[
+{ "todo":false,	"filename":"Benjamin Gates et le Livre des Secrets (2007).mp4",	"status":"ToDo",	"comment":"Done :-)",	"streams":[
 	{ "remove":false,	"index":0,	"codec_type":"video",	"codec_name":"h264",	"resolution":"1080p",	"width":1920,	"height":800,	"frame_rate":"2006815987/83700950",	"profile":"High" },
 	{ "remove":false,	"index":1,	"codec_type":"audio",	"codec_name":"aac",	"language":"fra",	"title":null,	"channel":"stereo" },
 	{ "remove":true,	"index":2,	"codec_type":"data",	"codec_name":"bin_data" }] },
-{ "todo":true,	"filename":"Benjamin Gates et le Trésor des Templiers (2004).mp4",	"status":"ToDo",	"comment":"To clean",	"streams":[
+{ "todo":false,	"filename":"Benjamin Gates et le Trésor des Templiers (2004).mp4",	"status":"ToDo",	"comment":"Done :-)",	"streams":[
 	{ "remove":false,	"index":0,	"codec_type":"video",	"codec_name":"h264",	"resolution":"1080p",	"width":1920,	"height":800,	"frame_rate":"2084519737/86941844",	"profile":"High" },
 	{ "remove":false,	"index":1,	"codec_type":"audio",	"codec_name":"aac",	"language":"fra",	"title":null,	"channel":"stereo" },
 	{ "remove":true,	"index":2,	"codec_type":"data",	"codec_name":"bin_data" }] },
@@ -300,7 +300,7 @@
 { "todo":false,	"filename":"Black Panther (2018).avi",	"status":"",	"comment":"",	"streams":[
 	{ "remove":false,	"index":0,	"codec_type":"video",	"codec_name":"mpeg4",	"resolution":"720x304",	"width":720,	"height":304,	"frame_rate":"2997/125",	"profile":"Advanced Simple Profile" },
 	{ "remove":false,	"index":1,	"codec_type":"audio",	"codec_name":"ac3",	"language":null,	"title":null,	"channel":"5.1(side)" }] },
-{ "todo":true,	"filename":"Black Widow (2021).mkv",	"status":"ToDo",	"comment":"To clean",	"streams":[
+{ "todo":false,	"filename":"Black Widow (2021).mkv",	"status":"ToDo",	"comment":"Done :-)",	"streams":[
 	{ "remove":false,	"index":0,	"codec_type":"video",	"codec_name":"h264",	"resolution":"1080p",	"width":1920,	"height":1080,	"frame_rate":"24000/1001",	"profile":"High" },
 	{ "remove":false,	"index":1,	"codec_type":"audio",	"codec_name":"eac3",	"language":"fre",	"title":"VFF AC3 5.1 @256kbps",	"channel":"5.1(side)" },
 	{ "remove":false,	"index":2,	"codec_type":"subtitle",	"codec_name":"subrip",	"language":"fre",	"title":"FR Forcés SRT" },
@@ -325,13 +325,13 @@
 	{ "remove":false,	"index":0,	"codec_type":"video",	"codec_name":"h264",	"resolution":"1080p",	"width":1920,	"height":802,	"frame_rate":"24000/1001",	"profile":"High" },
 	{ "remove":true,	"index":1,	"codec_type":"audio",	"codec_name":"ac3",	"language":"fre",	"title":"VFQ",	"channel":"5.1(side)" },
 	{ "remove":true,	"index":2,	"codec_type":"subtitle",	"codec_name":"subrip",	"language":"fre",	"title":"French Forced VFQ" }] },
-{ "todo":true,	"filename":"Blade (1998).mkv",	"status":"ToDo",	"comment":"To clean",	"streams":[
+{ "todo":false,	"filename":"Blade (1998).mkv",	"status":"ToDo",	"comment":"Done :-)",	"streams":[
 	{ "remove":false,	"index":0,	"codec_type":"video",	"codec_name":"h264",	"resolution":"1080p",	"width":1920,	"height":1080,	"frame_rate":"24000/1001",	"profile":"High" },
 	{ "remove":false,	"index":1,	"codec_type":"audio",	"codec_name":"ac3",	"language":"fre",	"title":"AC3-5.1-VFF",	"channel":"5.1(side)" },
 	{ "remove":false,	"index":2,	"codec_type":"subtitle",	"codec_name":"subrip",	"language":"fre",	"title":"forcés" },
 	{ "remove":false,	"index":3,	"codec_type":"subtitle",	"codec_name":"subrip",	"language":"fre",	"title":"complets" },
 	{ "remove":true,	"index":4,	"codec_type":"subtitle",	"codec_name":"subrip",	"language":"eng",	"title":"complets" }] },
-{ "todo":true,	"filename":"Blitz (2011).mkv",	"status":"ToDo",	"comment":"To clean",	"streams":[
+{ "todo":false,	"filename":"Blitz (2011).mkv",	"status":"ToDo",	"comment":"Done :-)",	"streams":[
 	{ "remove":false,	"index":0,	"codec_type":"video",	"codec_name":"h264",	"resolution":"1080p",	"width":1920,	"height":816,	"frame_rate":"24/1",	"profile":"High" },
 	{ "remove":false,	"index":1,	"codec_type":"audio",	"codec_name":"ac3",	"language":"fre",	"title":"AC3-5.1-VFF",	"channel":"5.1(side)" },
 	{ "remove":false,	"index":2,	"codec_type":"subtitle",	"codec_name":"subrip",	"language":"fre",	"title":"full" },
@@ -404,7 +404,7 @@
 	{ "remove":false,	"index":2,	"codec_type":"subtitle",	"codec_name":"subrip",	"language":"fre",	"title":"FR Forcés Colorés" },
 	{ "remove":false,	"index":3,	"codec_type":"subtitle",	"codec_name":"subrip",	"language":"fre",	"title":"FR Complets" },
 	{ "remove":false,	"index":4,	"codec_type":"subtitle",	"codec_name":"subrip",	"language":"fre",	"title":"FR Forcés" }] },
-{ "todo":true,	"filename":"Carry-On (2024).mkv",	"status":"ToDo",	"comment":"To clean",	"streams":[
+{ "todo":false,	"filename":"Carry-On (2024).mkv",	"status":"ToDo",	"comment":"Done :-)",	"streams":[
 	{ "remove":false,	"index":0,	"codec_type":"video",	"codec_name":"h264",	"resolution":"1080p",	"width":1920,	"height":1080,	"frame_rate":"24/1",	"profile":"Main" },
 	{ "remove":false,	"index":1,	"codec_type":"audio",	"codec_name":"eac3",	"language":"fre",	"title":null,	"channel":"5.1(side)" },
 	{ "remove":true,	"index":2,	"codec_type":"audio",	"codec_name":"eac3",	"language":"fre",	"title":"AD",	"channel":"5.1(side)" },
@@ -420,12 +420,12 @@
 { "todo":false,	"filename":"Chevalier (2001).mkv",	"status":"",	"comment":"",	"streams":[
 	{ "remove":false,	"index":0,	"codec_type":"video",	"codec_name":"h264",	"resolution":"1080p",	"width":1920,	"height":816,	"frame_rate":"24000/1001",	"profile":"High" },
 	{ "remove":false,	"index":1,	"codec_type":"audio",	"codec_name":"aac",	"language":null,	"title":"Surround",	"channel":"5.1" }] },
-{ "todo":true,	"filename":"Chute libre (1993).mkv",	"status":"ToDo",	"comment":"To clean",	"streams":[
+{ "todo":false,	"filename":"Chute libre (1993).mkv",	"status":"ToDo",	"comment":"Done :-)",	"streams":[
 	{ "remove":false,	"index":0,	"codec_type":"video",	"codec_name":"h264",	"resolution":"1080p",	"width":1920,	"height":800,	"frame_rate":"24000/1001",	"profile":"High" },
 	{ "remove":false,	"index":1,	"codec_type":"subtitle",	"codec_name":"subrip",	"language":"fre",	"title":"Français Sous-titre Complet" },
 	{ "remove":false,	"index":2,	"codec_type":"audio",	"codec_name":"ac3",	"language":"fre",	"title":"Français [VFF] Ac3 Stéréo 2 Canaux 192kbps",	"channel":"stereo" },
 	{ "remove":true,	"index":3,	"codec_type":"audio",	"codec_name":"ac3",	"language":"fre",	"title":"Français [VFQ] Ac3 Stéréo 2 Canaux 192kbps [DVD Synchronisé Zone80]",	"channel":"stereo" }] },
-{ "todo":true,	"filename":"Civil War (2024).mkv",	"status":"ToDo",	"comment":"To clean",	"streams":[
+{ "todo":false,	"filename":"Civil War (2024).mkv",	"status":"ToDo",	"comment":"Done :-)",	"streams":[
 	{ "remove":false,	"index":0,	"codec_type":"video",	"codec_name":"h264",	"resolution":"1080p",	"width":1920,	"height":1040,	"frame_rate":"24000/1001",	"profile":"High" },
 	{ "remove":false,	"index":1,	"codec_type":"audio",	"codec_name":"eac3",	"language":"fre",	"title":"VFF",	"channel":"5.1(side)" },
 	{ "remove":true,	"index":2,	"codec_type":"audio",	"codec_name":"eac3",	"language":"fre",	"title":"VFF AD",	"channel":"stereo" },
@@ -472,7 +472,7 @@
 	{ "remove":false,	"index":1,	"codec_type":"audio",	"codec_name":"eac3",	"language":"fre",	"title":"VFF AC3 5.1",	"channel":"5.1(side)" },
 	{ "remove":false,	"index":2,	"codec_type":"subtitle",	"codec_name":"subrip",	"language":"fre",	"title":"FR Forcés SRT" },
 	{ "remove":false,	"index":3,	"codec_type":"subtitle",	"codec_name":"subrip",	"language":"fre",	"title":"FR Complets SRT" }] },
-{ "todo":true,	"filename":"Da Vinci Code (2006).mkv",	"status":"ToDo",	"comment":"To clean",	"streams":[
+{ "todo":false,	"filename":"Da Vinci Code (2006).mkv",	"status":"ToDo",	"comment":"Done :-)",	"streams":[
 	{ "remove":false,	"index":0,	"codec_type":"video",	"codec_name":"h264",	"resolution":"1080p",	"width":1920,	"height":1080,	"frame_rate":"24000/1001",	"profile":"High" },
 	{ "remove":true,	"index":1,	"codec_type":"audio",	"codec_name":"ac3",	"language":"fre",	"title":"AC3-5.1-VFQ",	"channel":"5.1(side)" },
 	{ "remove":false,	"index":2,	"codec_type":"audio",	"codec_name":"ac3",	"language":"fre",	"title":"AC3-5.1-VFF",	"channel":"5.1(side)" },
@@ -496,7 +496,7 @@
 { "todo":false,	"filename":"Arnaques, crimes et botanique (1998).avi",	"status":"",	"comment":"",	"streams":[
 	{ "remove":false,	"index":0,	"codec_type":"video",	"codec_name":"msmpeg4v3",	"resolution":"720x320",	"width":720,	"height":320,	"frame_rate":"25/1",	"profile":null },
 	{ "remove":false,	"index":1,	"codec_type":"audio",	"codec_name":"mp3",	"language":null,	"title":null,	"channel":"stereo" }] },
-{ "todo":true,	"filename":"Avengers (2012).mp4",	"status":"ToDo",	"comment":"To clean",	"streams":[
+{ "todo":false,	"filename":"Avengers (2012).mp4",	"status":"ToDo",	"comment":"Done :-)",	"streams":[
 	{ "remove":false,	"index":0,	"codec_type":"video",	"codec_name":"h264",	"resolution":"1080p",	"width":1920,	"height":1080,	"frame_rate":"24000/1001",	"profile":"High" },
 	{ "remove":false,	"index":1,	"codec_type":"audio",	"codec_name":"aac",	"language":"fre",	"title":null,	"channel":"stereo" },
 	{ "remove":true,	"index":2,	"codec_type":"data",	"codec_name":"bin_data" }] },
@@ -537,7 +537,7 @@
 	{ "remove":false,	"index":0,	"codec_type":"video",	"codec_name":"h264",	"resolution":"360p",	"width":640,	"height":360,	"frame_rate":"24000/1001",	"profile":"High" },
 	{ "remove":false,	"index":1,	"codec_type":"audio",	"codec_name":"aac",	"language":"fre",	"title":"French AAC 2.0",	"channel":"stereo" },
 	{ "remove":false,	"index":2,	"codec_type":"subtitle",	"codec_name":"subrip",	"language":"fre",	"title":"French Complet" }] },
-{ "todo":true,	"filename":"Je suis une légende (2007).mkv",	"status":"ToDo",	"comment":"To clean",	"streams":[
+{ "todo":false,	"filename":"Je suis une légende (2007).mkv",	"status":"ToDo",	"comment":"Done :-)",	"streams":[
 	{ "remove":false,	"index":0,	"codec_type":"video",	"codec_name":"h264",	"resolution":"1080p",	"width":1920,	"height":1080,	"frame_rate":"24000/1001",	"profile":"Main" },
 	{ "remove":false,	"index":1,	"codec_type":"audio",	"codec_name":"ac3",	"language":"fre",	"title":"Francais VFF AC3",	"channel":"stereo" },
 	{ "remove":false,	"index":2,	"codec_type":"subtitle",	"codec_name":"hdmv_pgs_subtitle",	"language":"fre",	"title":"Forced" },
@@ -562,7 +562,7 @@
 	{ "remove":false,	"index":2,	"codec_type":"audio",	"codec_name":"ac3",	"language":"fre",	"title":"Version Québecoise",	"channel":"5.1(side)" },
 	{ "remove":false,	"index":3,	"codec_type":"subtitle",	"codec_name":"subrip",	"language":"fre",	"title":"Sous-titres Forcés" },
 	{ "remove":false,	"index":4,	"codec_type":"subtitle",	"codec_name":"subrip",	"language":"fre",	"title":"Sous-titres Complets" }] },
-{ "todo":true,	"filename":"Deadpool 2 (2018).mkv",	"status":"ToDo",	"comment":"To clean",	"streams":[
+{ "todo":false,	"filename":"Deadpool 2 (2018).mkv",	"status":"ToDo",	"comment":"Done :-)",	"streams":[
 	{ "remove":false,	"index":0,	"codec_type":"video",	"codec_name":"h264",	"resolution":"1080p",	"width":1920,	"height":802,	"frame_rate":"24000/1001",	"profile":"High" },
 	{ "remove":false,	"index":1,	"codec_type":"audio",	"codec_name":"ac3",	"language":"fra",	"title":"Français",	"channel":"5.1(side)" },
 	{ "remove":true,	"index":2,	"codec_type":"audio",	"codec_name":"ac3",	"language":"eng",	"title":"Anglais",	"channel":"5.1(side)" },
@@ -573,7 +573,7 @@
 { "todo":false,	"filename":"Deep Impact (1998).avi",	"status":"",	"comment":"",	"streams":[
 	{ "remove":false,	"index":0,	"codec_type":"video",	"codec_name":"mpeg4",	"resolution":"360p",	"width":624,	"height":272,	"frame_rate":"24997/1000",	"profile":null },
 	{ "remove":false,	"index":1,	"codec_type":"audio",	"codec_name":"mp3",	"language":null,	"title":null,	"channel":"stereo" }] },
-{ "todo":true,	"filename":"Deepwater (2016).mkv",	"status":"ToDo",	"comment":"To clean",	"streams":[
+{ "todo":false,	"filename":"Deepwater (2016).mkv",	"status":"ToDo",	"comment":"Done :-)",	"streams":[
 	{ "remove":false,	"index":0,	"codec_type":"video",	"codec_name":"h264",	"resolution":"1080p",	"width":1920,	"height":804,	"frame_rate":"24000/1001",	"profile":"High" },
 	{ "remove":false,	"index":1,	"codec_type":"audio",	"codec_name":"ac3",	"language":"fre",	"title":"AC3-5.1-VFF",	"channel":"5.1(side)" },
 	{ "remove":true,	"index":2,	"codec_type":"audio",	"codec_name":"ac3",	"language":"eng",	"title":"AC3-5.1-VO",	"channel":"5.1(side)" },
@@ -605,17 +605,17 @@
 { "todo":false,	"filename":"Dikkenek (2006).mkv",	"status":"",	"comment":"",	"streams":[
 	{ "remove":false,	"index":0,	"codec_type":"video",	"codec_name":"h264",	"resolution":"1080p",	"width":1920,	"height":816,	"frame_rate":"24/1",	"profile":"High" },
 	{ "remove":false,	"index":1,	"codec_type":"audio",	"codec_name":"eac3",	"language":"fre",	"title":null,	"channel":"5.1(side)" }] },
-{ "todo":true,	"filename":"Divergente (2014).mkv",	"status":"ToDo",	"comment":"To clean",	"streams":[
+{ "todo":false,	"filename":"Divergente (2014).mkv",	"status":"ToDo",	"comment":"Done :-)",	"streams":[
 	{ "remove":false,	"index":0,	"codec_type":"video",	"codec_name":"h264",	"resolution":"1080p",	"width":1920,	"height":800,	"frame_rate":"24/1",	"profile":"High" },
 	{ "remove":false,	"index":1,	"codec_type":"audio",	"codec_name":"ac3",	"language":"fre",	"title":"VFF AC3 5.1",	"channel":"5.1(side)" },
 	{ "remove":false,	"index":2,	"codec_type":"subtitle",	"codec_name":"subrip",	"language":"fre",	"title":"Full" },
 	{ "remove":true,	"index":3,	"codec_type":"subtitle",	"codec_name":"subrip",	"language":"eng",	"title":"Full" }] },
-{ "todo":true,	"filename":"Divergente 2 - L'Insurrection (2015).mkv",	"status":"ToDo",	"comment":"To clean",	"streams":[
+{ "todo":false,	"filename":"Divergente 2 - L'Insurrection (2015).mkv",	"status":"ToDo",	"comment":"Done :-)",	"streams":[
 	{ "remove":false,	"index":0,	"codec_type":"video",	"codec_name":"h264",	"resolution":"1080p",	"width":1910,	"height":796,	"frame_rate":"24000/1001",	"profile":"High" },
 	{ "remove":false,	"index":1,	"codec_type":"audio",	"codec_name":"ac3",	"language":"fre",	"title":"Français VFF",	"channel":"5.1(side)" },
 	{ "remove":false,	"index":2,	"codec_type":"subtitle",	"codec_name":"subrip",	"language":"fre",	"title":"Français complets" },
 	{ "remove":true,	"index":3,	"codec_type":"subtitle",	"codec_name":"subrip",	"language":"eng",	"title":"Anglais complets" }] },
-{ "todo":true,	"filename":"Divergente 3 - Au-delà du mur (2016).mkv",	"status":"ToDo",	"comment":"To clean",	"streams":[
+{ "todo":false,	"filename":"Divergente 3 - Au-delà du mur (2016).mkv",	"status":"ToDo",	"comment":"Done :-)",	"streams":[
 	{ "remove":false,	"index":0,	"codec_type":"video",	"codec_name":"h264",	"resolution":"1080p",	"width":1920,	"height":800,	"frame_rate":"24000/1001",	"profile":"High" },
 	{ "remove":false,	"index":1,	"codec_type":"audio",	"codec_name":"ac3",	"language":"fre",	"title":"AC3-5.1-VFF",	"channel":"5.1(side)" },
 	{ "remove":false,	"index":2,	"codec_type":"subtitle",	"codec_name":"subrip",	"language":"fre",	"title":"forced" },
@@ -628,14 +628,14 @@
 { "todo":false,	"filename":"Diversion (2015).avi",	"status":"",	"comment":"",	"streams":[
 	{ "remove":false,	"index":0,	"codec_type":"video",	"codec_name":"mpeg4",	"resolution":"704x400",	"width":704,	"height":400,	"frame_rate":"2997/125",	"profile":"Advanced Simple Profile" },
 	{ "remove":false,	"index":1,	"codec_type":"audio",	"codec_name":"mp3",	"language":null,	"title":null,	"channel":"stereo" }] },
-{ "todo":true,	"filename":"Django Unchained (2012).mkv",	"status":"ToDo",	"comment":"To clean",	"streams":[
+{ "todo":false,	"filename":"Django Unchained (2012).mkv",	"status":"ToDo",	"comment":"Done :-)",	"streams":[
 	{ "remove":false,	"index":0,	"codec_type":"video",	"codec_name":"h264",	"resolution":"1080p",	"width":1920,	"height":800,	"frame_rate":"24000/1001",	"profile":"High" },
 	{ "remove":false,	"index":1,	"codec_type":"audio",	"codec_name":"dts",	"language":"fre",	"title":"French - DTS-HD MA 5.1 @ 2208 Kbps",	"channel":"5.1(side)" },
 	{ "remove":true,	"index":2,	"codec_type":"audio",	"codec_name":"dts",	"language":"eng",	"title":"English - DTS-HD MA 5.1 @ 2782 Kbps",	"channel":"5.1(side)" },
 	{ "remove":false,	"index":3,	"codec_type":"subtitle",	"codec_name":"subrip",	"language":"fre",	"title":"French Forced" },
 	{ "remove":false,	"index":4,	"codec_type":"subtitle",	"codec_name":"subrip",	"language":"fre",	"title":"French" },
 	{ "remove":true,	"index":5,	"codec_type":"subtitle",	"codec_name":"subrip",	"language":"eng",	"title":"English" }] },
-{ "todo":true,	"filename":"Doctor Strange (2016).mkv",	"status":"ToDo",	"comment":"To clean",	"streams":[
+{ "todo":false,	"filename":"Doctor Strange (2016).mkv",	"status":"ToDo",	"comment":"Done :-)",	"streams":[
 	{ "remove":false,	"index":0,	"codec_type":"video",	"codec_name":"hevc",	"resolution":"1080p",	"width":1920,	"height":800,	"frame_rate":"24000/1001",	"profile":"Main 10" },
 	{ "remove":false,	"index":1,	"codec_type":"audio",	"codec_name":"ac3",	"language":"fre",	"title":"VFF AC3 5.1 @448kbps",	"channel":"5.1(side)" },
 	{ "remove":false,	"index":2,	"codec_type":"subtitle",	"codec_name":"subrip",	"language":"fre",	"title":"FR Forced VFF" },
