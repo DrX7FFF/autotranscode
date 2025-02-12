@@ -22,7 +22,7 @@ def stream_treatment(stream):
     pattern = r"\b(VFQ|AD|SDH|QUEBECOIS)\b"
     match resultat["codec_type"]:
         case "video":
-            resultat["resolution"] = f"{resultat["width"]}x{resultat["height"]}"
+            resultat["resolution"] = f"{resultat['width']}x{resultat['height']}"
             for r, res in resolution_map.items():
                 if resultat["width"]  in r:
                     resultat["resolution"] = res
@@ -100,8 +100,12 @@ def analyse_media(filename, moviedef):
 
     return res
 
+try:
+    movieslist = loadjson(dbfilename)
+except:
+    print("No DB, run dbupdate.py first")
+    exit
 
-movieslist = loadjson(dbfilename)
 todolist = []
 for filename, moviedef in movieslist.items():
     todolist.append(analyse_media(filename, moviedef))
