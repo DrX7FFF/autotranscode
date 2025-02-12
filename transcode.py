@@ -8,8 +8,8 @@ import select
 from common import *
 import time
 
-temppath="/home/moi/mediaHD1/Servarr/Transcoding"
-logfile="log.txt"
+temppath="/media/HD1/Servarr/Transcoding"
+logfile="./data/log.txt"
 
 def logmessage(level, message):
     with open(logfile, 'a') as file:

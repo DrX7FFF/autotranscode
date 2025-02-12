@@ -1,9 +1,10 @@
 import json
 import csv
 
-dbfilename = "db.json"
-todo_file = "check.json"
-moviespath = "/home/moi/mediaHD1/Films"
+dbfilename = "./data/db.json"
+todofilename = "./data/check.json"
+exportfilename = "./data/export.csv"
+moviespath = "/media/HD1/Films"
 
 def db_save(obj, filename = dbfilename):
     with open(filename, "w", encoding="utf-8") as file:
@@ -24,7 +25,7 @@ def custom_json_format(obj, level=0):
     else:
         return json.dumps(obj, ensure_ascii=False)
 
-def save_todo(films, filename=todo_file) :
+def save_todo(films, filename=todofilename) :
     with open(filename, 'w', encoding="utf-8") as file:
         file.write('[\n')
         file.write(',\n'.join(custom_json_format(obj, 1) for obj in films))
@@ -39,7 +40,7 @@ def save_todo(films, filename=todo_file) :
 #         file.write(json.dumps(obj, ensure_ascii=False) + "\n")
 
 
-def export_to_csv(data, filename="check.csv"):
+def export_to_csv(data, filename=exportfilename):
     """ Exporte une structure JSON dynamique en CSV tout en respectant l'ordre des clés. """
 
     # Collecter toutes les clés sans modifier l'ordre

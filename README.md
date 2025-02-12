@@ -1,2 +1,5 @@
 # autotranscode
-Scan file and transcode to HEVC
+Scan file
+Select uninteresting video stream
+Remove unused 
+

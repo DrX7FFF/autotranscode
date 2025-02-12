@@ -1,6 +1,1 @@
-log/
-__pycache__/
-*.csv
-db.json
-check.json
-log.txt
+data/
