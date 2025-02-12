@@ -8,9 +8,6 @@ import select
 from common import *
 import time
 
-temppath="/media/HD1/Servarr/Transcoding"
-logfile="./data/log.txt"
-
 def logmessage(level, message):
     with open(logfile, 'a') as file:
         file.write(f"{dt.datetime.now().strftime("%Y-%m-%d %H:%M:%S")} [{level}] {message}\n")

@@ -1,10 +1,6 @@
 import json
 import csv
-
-dbfilename = "./data/db.json"
-todofilename = "./data/check.json"
-exportfilename = "./data/export.csv"
-moviespath = "/media/HD1/Films"
+from config import *
 
 def db_save(obj, filename = dbfilename):
     with open(filename, "w", encoding="utf-8") as file:

@@ -1,0 +1,6 @@
+dbfilename = "./data/db.json"
+todofilename = "./data/check.json"
+exportfilename = "./data/export.csv"
+logfile="./data/log.txt"
+moviespath = "/media/HD1/Films"
+temppath="/media/HD1/Servarr/Transcoding"
