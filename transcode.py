@@ -38,7 +38,7 @@ def run_ffmpeg(command):
                     # process.wait()  # Attendre la fin complète du processus avant de quitter
                     # sys.stdout.flush()  # Forcer l'affichage de tout le buffer stdout
             elif stream == process.stdout:
-                code = line.partition('=')[0]
+                code = line.partition('=')
                 if code[0] == "progress":
                     sys.stdout.write('          \r')
                 elif code[0] in ["out_time","dup_frames","drop_frames","speed"]:
@@ -46,7 +46,7 @@ def run_ffmpeg(command):
                     res[code[0]] = code[1]
 
         sys.stdout.flush()
-        time.sleep(1.5)  # Évite de surcharger la boucle
+        time.sleep(0.1)  # Évite de surcharger la boucle
     print("\r\n")
     return res
 
