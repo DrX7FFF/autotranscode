@@ -50,8 +50,13 @@ def run_ffmpeg(command):
     return errors
 
 ### Begin
-logmessage("INFO", ">>>> Begin")
-todolist = loadjson(todo_file)
+if len(sys.argv)>0 :
+    maxiter = int(sys.argv[1])
+else:
+    maxiter = 1
+
+logmessage(f"INFO", ">>>> Begin for {maxiter} iter")
+todolist = loadjson(todofilename)
 
 count = 0
 for film in todolist:
@@ -113,6 +118,6 @@ for film in todolist:
 
         save_todo(todolist)
         logmessage("INFO", "---------------------------------------")
-        if count >=20 :
+        if count >=maxiter :
             break
 logmessage("INFO", ">>>> End")
