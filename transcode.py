@@ -22,7 +22,7 @@ def run_ffmpeg(command):
         bufsize=1
     )
 
-    errors = []
+    res = {"errors":[], "dup_frames":"", "drop_frames":"", "speed":""}
     # Lire stdout et stderr en parallèle
     while process.poll() is None:  # Tant que le processus tourne
         ready, _, _ = select.select([process.stdout, process.stderr], [], [])
@@ -33,24 +33,25 @@ def run_ffmpeg(command):
             if stream == process.stderr:
                 if len(line)>0:
                     print(f"\n❌ Erreur détectée : #{line}#", file=sys.stderr)
-                    errors.append(line)  # Stocker l'erreur
+                    res["errors"].append(line)  # Stocker l'erreur
                     process.terminate()  # Arrêter immédiatement ffmpeg
                     # process.wait()  # Attendre la fin complète du processus avant de quitter
                     # sys.stdout.flush()  # Forcer l'affichage de tout le buffer stdout
             elif stream == process.stdout:
                 code = line.partition('=')[0]
-                if code == "progress":
+                if code[0] == "progress":
                     sys.stdout.write('          \r')
-                elif code in ["out_time","dup_frames","drop_frames","speed"]:
+                elif code[0] in ["out_time","dup_frames","drop_frames","speed"]:
                     sys.stdout.write(line + ' ')  # Afficher stdout en direct
+                    res[code[0]] = code[1]
 
         sys.stdout.flush()
-        time.sleep(0.01)  # Évite de surcharger la boucle
+        time.sleep(1.5)  # Évite de surcharger la boucle
     print("\r\n")
-    return errors
+    return res
 
 ### Begin
-if len(sys.argv)>0 :
+if len(sys.argv)>1 :
     maxiter = int(sys.argv[1])
 else:
     maxiter = 1
@@ -88,7 +89,7 @@ for film in todolist:
         # , "-progress", "pipe:1"
         # "-hide_banner", 
         cmd = [
-                "ffmpeg", "-y", "-loglevel", "warning", "-progress", "pipe:1"
+                "ffmpeg", "-y", "-loglevel", "warning", "-progress", "pipe:1", "-stats_period", "2"
                 ] + cmd_extra + [
                 "-i", infile, 
                 "-map_metadata", "0", "-map_chapters", "0", "-map", "0"
@@ -99,9 +100,11 @@ for film in todolist:
                 outfile
             ]
         logmessage("INFO", ' '.join(cmd))
-        errors = run_ffmpeg(cmd)
-        if len(errors)>0:
-            for errmsg in errors:
+        res = run_ffmpeg(cmd)
+        ["out_time","dup_frames","drop_frames","speed"]
+        logmessage("INFO", f"speed={res['speed']} / dup_frames={res['dup_frames']} / drop_frames={res['drop_frames']}")
+        if len(res["errors"])>0:
+            for errmsg in res["errors"]:
                 logmessage("ERROR", errmsg)
             os.remove(outfile)
             film["todo"]=False
