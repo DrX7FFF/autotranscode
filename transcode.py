@@ -6,12 +6,12 @@ import sys
 import os
 import shutil
 import select
-from common import *
 import time
+from common import *
 
 def logmessage(level, message):
     with open(logfile, 'a') as file:
-        file.write(f"{dt.datetime.now().strftime("%Y-%m-%d %H:%M:%S")} [{level}] {message}\n")
+        file.write(f"{dt.datetime.now().strftime('%Y-%m-%d %H:%M:%S')} [{level}] {message}\n")
 
 def run_ffmpeg(command):
     process = subprocess.Popen(
@@ -82,7 +82,17 @@ for film in todolist:
         # "-t", "30",
         # , "-progress", "pipe:1"
         # "-hide_banner", 
-        cmd = ["ffmpeg", "-y", "-loglevel", "warning", "-progress", "pipe:1"] + cmd_extra + ["-i", infile, "-map_metadata", "0", "-map_chapters", "0", "-map", "0"] + mapfilter + [ "-c:v", "copy", "-c:a", "copy", "-c:s", "copy", outfile]
+        cmd = [
+                "ffmpeg", "-y", "-loglevel", "warning", "-progress", "pipe:1"
+                ] + cmd_extra + [
+                "-i", infile, 
+                "-map_metadata", "0", "-map_chapters", "0", "-map", "0"
+                ] + mapfilter + [
+                "-c:v", "copy", 
+                "-c:a", "copy", 
+                "-c:s", "copy", 
+                outfile
+            ]
         logmessage("INFO", ' '.join(cmd))
         errors = run_ffmpeg(cmd)
         if len(errors)>0:

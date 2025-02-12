@@ -100,11 +100,7 @@ def analyse_media(filename, moviedef):
 
     return res
 
-try:
-    movieslist = loadjson(dbfilename)
-except:
-    print("No DB, run dbupdate.py first")
-    exit
+movieslist = loadjson(dbfilename)
 
 todolist = []
 for filename, moviedef in movieslist.items():

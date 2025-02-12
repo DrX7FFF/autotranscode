@@ -10,8 +10,12 @@ def db_save(obj, filename = dbfilename):
         json.dump(obj, file)
 
 def loadjson(filename):
-    with open(filename, "r", encoding="utf-8") as file:
-        return json.load(file)
+    try:
+        with open(filename, "r", encoding="utf-8") as file:
+            return json.load(file)
+    except:
+        print(f"No file : {filename}")
+        return None
 
 def custom_json_format(obj, level=0):
     """Formate le JSON pour qu'il soit compact mais avec des retours à la ligne pour chaque objet."""
