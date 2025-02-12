@@ -37,7 +37,7 @@ def run_ffmpeg(command):
                     print(f"\n❌ Erreur détectée : #{line}#", file=sys.stderr)
                     errors.append(line)  # Stocker l'erreur
                     process.terminate()  # Arrêter immédiatement ffmpeg
-                    process.wait()  # Attendre la fin complète du processus avant de quitter
+                    # process.wait()  # Attendre la fin complète du processus avant de quitter
                     # sys.stdout.flush()  # Forcer l'affichage de tout le buffer stdout
             elif stream == process.stdout:
                 code = line.partition('=')[0]
@@ -46,7 +46,9 @@ def run_ffmpeg(command):
                 elif code in ["out_time","dup_frames","drop_frames","speed"]:
                     sys.stdout.write(line + ' ')  # Afficher stdout en direct
 
-                sys.stdout.flush()
+        sys.stdout.flush()
+        time.sleep(0.01)  # Évite de surcharger la boucle
+    print("\r\n")
     return errors
 
 ### Begin
@@ -97,12 +99,12 @@ for film in todolist:
             gain = int((sizeafter - sizebefore)/(1024*1024))/1000
             shutil.move(outfile, infile)
             duration = divmod((dt.datetime.now() - begindt).seconds, 60)
-            logmessage("INFO", f"gain={gain}Mo duration={duration}")
+            logmessage("INFO", f"gain={gain} Go duration={duration}")
             film["todo"]=False
             film["comment"]="Done :-)"
 
         save_todo(todolist)
         logmessage("INFO", "---------------------------------------")
-        if count >=10 :
+        if count >=20 :
             break
 logmessage("INFO", ">>>> End")
