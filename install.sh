@@ -20,4 +20,4 @@ rm "$tempfile"
 rm -r "$tempfolder"
 
 # Make executable
-chmod +x "$destfolder/*.py"
+chmod +x "$destfolder"/*.py
