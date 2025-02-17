@@ -35,7 +35,7 @@ def run_ffmpeg(command):
                     continue
 
                 if stream == process.stderr:
-                    print(f"\n❌ Erreur détectée : #{line}#", file=sys.stderr)
+                    print(f"❌ Erreur détectée : #{line}#", file=sys.stderr)
                     res["errors"].append(line)  # Stocker l'erreur
                     errors_detected = True  # Marquer qu'une erreur a été détectée
 
