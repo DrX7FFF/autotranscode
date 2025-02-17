@@ -23,30 +23,34 @@ def run_ffmpeg(command):
     )
 
     res = {"errors":[], "dup_frames":"", "drop_frames":"", "speed":""}
-    # Lire stdout et stderr en parallèle
+    errors_detected = False  # Flag global pour arrêter ffmpeg après avoir tout lu
+
     while process.poll() is None:  # Tant que le processus tourne
-        ready, _, _ = select.select([process.stdout, process.stderr], [], [])
-
+        # Lire stdout et stderr en parallèle
+        ready, _, _ = select.select([process.stdout, process.stderr], [], [], 30) # timeout de 30 secondes
         for stream in ready:
-            line = stream.readline().strip()  # Lire une ligne dispo
+            for line in iter(stream.readline, ''):  # Lire tout ce qui est dispo
+                line = line.strip()
+                if not line:
+                    continue
 
-            if stream == process.stderr:
-                if len(line)>0:
+                if stream == process.stderr:
                     print(f"\n❌ Erreur détectée : #{line}#", file=sys.stderr)
                     res["errors"].append(line)  # Stocker l'erreur
-                    process.terminate()  # Arrêter immédiatement ffmpeg
-                    # process.wait()  # Attendre la fin complète du processus avant de quitter
-                    # sys.stdout.flush()  # Forcer l'affichage de tout le buffer stdout
-            elif stream == process.stdout:
-                code = line.partition('=')
-                if code[0] == "progress":
-                    sys.stdout.write('          \r')
-                elif code[0] in ["out_time","dup_frames","drop_frames","speed"]:
-                    sys.stdout.write(line + ' ')  # Afficher stdout en direct
-                    res[code[0]] = code[1]
+                    errors_detected = True  # Marquer qu'une erreur a été détectée
+
+                elif stream == process.stdout:
+                    code = line.partition('=')
+                    if code[0] == "progress":
+                        sys.stdout.write('          \r')
+                    elif code[0] in ["out_time","dup_frames","drop_frames","speed"]:
+                        sys.stdout.write(line + ' ')  # Afficher stdout en direct
+                        res[code[0]] = code[2]
 
         sys.stdout.flush()
-        time.sleep(0.1)  # Évite de surcharger la boucle
+        if errors_detected:  # Vérifier après avoir tout traité dans cette itération
+            process.terminate()  # Stoppe ffmpeg une fois qu'on a bien tout lu
+
     print("\r\n")
     return res
 
