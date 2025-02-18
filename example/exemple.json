@@ -1,0 +1,231 @@
+{
+  "attachments": [
+    {
+      "content_type": "image/jpeg",
+      "description": "",
+      "file_name": "cover.jpg",
+      "id": 1,
+      "properties": {
+        "uid": 3833290095999090053
+      },
+      "size": 115257
+    }
+  ],
+  "chapters": [
+    {
+      "num_entries": 32
+    }
+  ],
+  "container": {
+    "properties": {
+      "container_type": 17,
+      "date_local": "2024-05-28T22:26:27+02:00",
+      "date_utc": "2024-05-28T20:26:27Z",
+      "duration": 7104389000000,
+      "is_providing_timestamps": true,
+      "muxing_application": "libebml v1.4.2 + libmatroska v1.6.4",
+      "segment_uid": "62048475401249f0ae07d1002faeffd0",
+      "timestamp_scale": 1000000,
+      "title": "Red Rooms (2023)",
+      "writing_application": "mkvmerge v56.0.0 ('Strasbourg / St. Denis') 64-bit"
+    },
+    "recognized": true,
+    "supported": true,
+    "type": "Matroska"
+  },
+  "errors": [],
+  "file_name": "/home/moi/mediaHD1/Films/Les chambres rouges (2023).mkv",
+  "global_tags": [],
+  "identification_format_version": 19,
+  "track_tags": [],
+  "tracks": [
+    {
+      "codec": "AVC/H.264/MPEG-4p10",
+      "id": 0,
+      "properties": {
+        "codec_id": "V_MPEG4/ISO/AVC",
+        "codec_private_data": "01640029ffe1002a67640029ac2ca401e0089f970152020202800001f480005dc074500010b0600039385f8c7076858b448001000568ebcd4940",
+        "codec_private_length": 58,
+        "default_duration": 41708333,
+        "default_track": true,
+        "display_dimensions": "1920x1080",
+        "display_unit": 0,
+        "enabled_track": true,
+        "forced_track": false,
+        "language": "fre",
+        "language_ietf": "fr-CA",
+        "minimum_timestamp": 0,
+        "num_index_entries": 14381,
+        "number": 1,
+        "packetizer": "mpeg4_p10_video",
+        "pixel_dimensions": "1920x1080",
+        "uid": 4400841666110754933
+      },
+      "type": "video"
+    },
+    {
+      "codec": "AC-3",
+      "id": 1,
+      "properties": {
+        "audio_channels": 6,
+        "audio_sampling_frequency": 48000,
+        "codec_id": "A_AC3",
+        "codec_private_length": 0,
+        "default_duration": 32000000,
+        "default_track": true,
+        "enabled_track": true,
+        "forced_track": false,
+        "language": "rus",
+        "language_ietf": "ru",
+        "minimum_timestamp": 0,
+        "num_index_entries": 0,
+        "number": 2,
+        "track_name": "MVO TVShows",
+        "uid": 2807790461321836180
+      },
+      "type": "audio"
+    },
+    {
+      "codec": "AC-3",
+      "id": 2,
+      "properties": {
+        "audio_channels": 6,
+        "audio_sampling_frequency": 48000,
+        "codec_id": "A_AC3",
+        "codec_private_length": 0,
+        "default_duration": 32000000,
+        "default_track": false,
+        "enabled_track": true,
+        "forced_track": false,
+        "language": "fre",
+        "language_ietf": "fr",
+        "minimum_timestamp": 0,
+        "num_index_entries": 0,
+        "number": 3,
+        "uid": 13501196332227613026
+      },
+      "type": "audio"
+    },
+    {
+      "codec": "AC-3",
+      "id": 3,
+      "properties": {
+        "audio_channels": 2,
+        "audio_sampling_frequency": 48000,
+        "codec_id": "A_AC3",
+        "codec_private_length": 0,
+        "default_duration": 32000000,
+        "default_track": false,
+        "enabled_track": true,
+        "flag_commentary": true,
+        "forced_track": false,
+        "language": "fre",
+        "language_ietf": "fr",
+        "minimum_timestamp": 0,
+        "num_index_entries": 0,
+        "number": 4,
+        "track_name": "Commentary with director Pascal Plante",
+        "uid": 3714467655400054797
+      },
+      "type": "audio"
+    },
+    {
+      "codec": "SubRip/SRT",
+      "id": 4,
+      "properties": {
+        "codec_id": "S_TEXT/UTF8",
+        "codec_private_length": 0,
+        "default_track": true,
+        "enabled_track": true,
+        "encoding": "UTF-8",
+        "forced_track": false,
+        "language": "rus",
+        "language_ietf": "ru",
+        "num_index_entries": 71,
+        "number": 5,
+        "text_subtitles": true,
+        "track_name": "forced",
+        "uid": 7954450878891983475
+      },
+      "type": "subtitles"
+    },
+    {
+      "codec": "SubRip/SRT",
+      "id": 5,
+      "properties": {
+        "codec_id": "S_TEXT/UTF8",
+        "codec_private_length": 0,
+        "default_track": false,
+        "enabled_track": true,
+        "encoding": "UTF-8",
+        "forced_track": false,
+        "language": "rus",
+        "language_ietf": "ru",
+        "num_index_entries": 922,
+        "number": 6,
+        "text_subtitles": true,
+        "uid": 1002297551323284647
+      },
+      "type": "subtitles"
+    },
+    {
+      "codec": "SubRip/SRT",
+      "id": 6,
+      "properties": {
+        "codec_id": "S_TEXT/UTF8",
+        "codec_private_length": 0,
+        "default_track": false,
+        "enabled_track": true,
+        "encoding": "UTF-8",
+        "forced_track": false,
+        "language": "eng",
+        "language_ietf": "en-CA",
+        "num_index_entries": 922,
+        "number": 7,
+        "text_subtitles": true,
+        "uid": 8210988411248115000
+      },
+      "type": "subtitles"
+    },
+    {
+      "codec": "SubRip/SRT",
+      "id": 7,
+      "properties": {
+        "codec_id": "S_TEXT/UTF8",
+        "codec_private_length": 0,
+        "default_track": false,
+        "enabled_track": true,
+        "encoding": "UTF-8",
+        "forced_track": false,
+        "language": "fre",
+        "language_ietf": "fr-CA",
+        "num_index_entries": 72,
+        "number": 8,
+        "text_subtitles": true,
+        "track_name": "Forced",
+        "uid": 15091261979022804634
+      },
+      "type": "subtitles"
+    },
+    {
+      "codec": "SubRip/SRT",
+      "id": 8,
+      "properties": {
+        "codec_id": "S_TEXT/UTF8",
+        "codec_private_length": 0,
+        "default_track": false,
+        "enabled_track": true,
+        "encoding": "UTF-8",
+        "forced_track": false,
+        "language": "fre",
+        "language_ietf": "fr-FR",
+        "num_index_entries": 397,
+        "number": 9,
+        "text_subtitles": true,
+        "uid": 9260864138097282156
+      },
+      "type": "subtitles"
+    }
+  ],
+  "warnings": []
+}
