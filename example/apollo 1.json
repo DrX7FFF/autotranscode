@@ -1,0 +1,39 @@
+{
+    "attachments": [],
+    "chapters": [],
+    "container": {
+      "properties": {
+        "container_type": 5,
+        "is_providing_timestamps": true
+      },
+      "recognized": true,
+      "supported": true,
+      "type": "AVI"
+    },
+    "errors": [],
+    "file_name": "/home/moi/mediaHD1/Films/Apollo 11 (2019).avi",
+    "global_tags": [],
+    "identification_format_version": 19,
+    "track_tags": [],
+    "tracks": [
+      {
+        "codec": "MPEG-4p2",
+        "id": 0,
+        "properties": {
+          "pixel_dimensions": "720x328"
+        },
+        "type": "video"
+      },
+      {
+        "codec": "AC-3",
+        "id": 1,
+        "properties": {
+          "audio_channels": 6,
+          "audio_sampling_frequency": 48000
+        },
+        "type": "audio"
+      }
+    ],
+    "warnings": []
+  }
+  
