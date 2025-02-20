@@ -5,14 +5,15 @@ from pathlib import Path
 execpath = os.path.dirname(sys.argv[0])
 
 dbfilename = execpath + "/data/db.json"
-dbfilenameMKV = execpath + "/data/dbMKV.json"
 todofilename = execpath + "/data/check.json"
-todofilenameMKV = execpath + "/data/checkMKV.json"
 exportfilename = execpath + "/data/export.csv"
-exportfilenameMKV = execpath + "/data/exportMKV.csv"
 logfile= execpath + "/data/log.txt"
 moviespath = "/home/moi/mediaHD1/Films"
-temppath="/tmp/transcode"
+temppath = "/home/moi/mediaHD1/Transcoding"
+
+dockermoviespath = "/storage/Films"
+dockertemppath="/storage/Transcoding"
+
 dockermode=False
 testmode=True
 

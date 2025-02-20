@@ -9,6 +9,8 @@ import select
 import time
 from common import *
 
+tempfilename = "temp.mkv"
+
 def logmessage(level, message):
     with open(logfile, 'a') as file:
         file.write(f"{dt.datetime.now().strftime('%Y-%m-%d %H:%M:%S')} [{level}] {message}\n")
@@ -94,14 +96,10 @@ for film in todolist:
 
         begindt = dt.datetime.now()
         logmessage("INFO", film['filename'])
-        print(f"{film['filename']}")
 
-        infile=moviespath+"/"+film["filename"]
-        outfile=temppath+"/"+film["filename"]
         filtervideo=[]
         filteraudio=[]
         filtersubtitle=[]
-        # --audio-tracks
         for stream in film["streams"]:
             if stream["remove"]:
                 match stream["type"]:
@@ -115,7 +113,7 @@ for film in todolist:
             cmd = ["docker", "exec", "mkvtoolnix"]
         else:
             cmd = []
-        cmd = cmd + [ "mkvmerge", "-o", outfile, "--no-attachments", "--abort-on-warnings", "--flush-on-close" ]
+        cmd = cmd + [ "mkvmerge", "-o", dockertemppath+"/"+tempfilename, "--no-attachments", "--abort-on-warnings", "--flush-on-close" ]
         if len(filtervideo)>0:
             cmd.append("--video-tracks")
             cmd.append('!'+','.join(filtervideo))
@@ -125,7 +123,7 @@ for film in todolist:
         if len(filtersubtitle)>0:
             cmd.append("--subtitle-tracks")
             cmd.append('!'+','.join(filtersubtitle))
-        cmd.append(infile)
+        cmd.append(dockermoviespath+"/"+film["filename"])
 
         logmessage("INFO", ' '.join(cmd))
 
@@ -138,14 +136,14 @@ for film in todolist:
                 logmessage("ERROR", "Return code : "+str(res["rc"]))
                 for msg in res["msg"]:
                     logmessage("INFO", msg)
-                os.remove(outfile)
+                os.remove(temppath+"/"+tempfilename)
                 film["comment"]="Error durring processing"
             else:
-                sizebefore = os.stat(infile).st_size
-                sizeafter = os.stat(outfile).st_size
+                sizebefore = os.stat(moviespath+"/"+film["filename"]).st_size
+                sizeafter = os.stat(temppath+"/"+tempfilename).st_size
                 gain = int((sizeafter - sizebefore)/(1024*1024))/1000
-                logmessage("INFO", "Moving "+outfile+" to "+infile)
-                shutil.move(outfile, infile)
+                logmessage("INFO", "Moving "+temppath+"/"+tempfilename+" to "+ moviespath+"/"+film["filename"])
+                shutil.move(temppath+"/"+tempfilename, moviespath+"/"+film["filename"])
                 duration = divmod((dt.datetime.now() - begindt).seconds, 60)
                 logmessage("INFO", f"gain={gain} Go / duration={duration}")
                 film["comment"]="Done :-)"
