@@ -5,13 +5,13 @@ import re
 import unicodedata
 from common import *
 
-resolution_map = {
-    range(1900, 1940): '1080p',
-    range(1260, 1300): '720p',
-    range(834, 874): '480p',
-    range(620, 660): '360p',
-    range(406, 446): '240p'
-}
+# resolution_map = {
+#     range(1900, 1940): '1080p',
+#     range(1260, 1300): '720p',
+#     range(834, 874): '480p',
+#     range(620, 660): '360p',
+#     range(406, 446): '240p'
+# }
 
 def normalize_string(s):
     return (''.join(c for c in unicodedata.normalize('NFKD', s) if not unicodedata.combining(c))).upper()
@@ -20,15 +20,16 @@ def stream_treatment(stream):
     resultat = {"remove": False}
     resultat.update(stream)
     pattern = r"\b(VFQ|AD|SDH|QUEBECOIS)\b"
-    match resultat["codec_type"]:
+    match resultat["type"]:
         case "video":
-            resultat["resolution"] = f"{resultat['width']}x{resultat['height']}"
-            for r, res in resolution_map.items():
-                if resultat["width"]  in r:
-                    resultat["resolution"] = res
-                    break
-            if resultat["codec_name"] in ["mjpeg", "png"] or resultat["frame_rate"] == "0/0":
-                resultat["remove"] = True
+            # resultat["resolution"] = f"{resultat['width']}x{resultat['height']}"
+            # for r, res in resolution_map.items():
+            #     if resultat["width"]  in r:
+            #         resultat["resolution"] = res
+            #         break
+            # if resultat["codec_name"] in ["mjpeg", "png"] or resultat["frame_rate"] == "0/0":
+            #     resultat["remove"] = True
+            resultat["remove"] = False
         case "audio":
             if not resultat["language"] in ["fre", "fra", "und", "mis", "", None]:
                 resultat["remove"] = True
@@ -55,10 +56,10 @@ def analyse_media(filename, moviedef):
     res["streams"] = [stream_treatment(stream) for stream in moviedef["streams"]]
 
     ### Check video stream
-    video_streams = [s for s in res["streams"] if s.get("codec_type") == "video" and not s.get("remove")]
-    audio_streams = [s for s in res["streams"] if s.get("codec_type") == "audio" and not s.get("remove")]
-    subtitle_streams_removed = [s for s in res["streams"] if s.get("codec_type") == "subtitle" and s.get("remove")]
-    subtitle_streams_keeped = [s for s in res["streams"] if s.get("codec_type") == "subtitle" and not s.get("remove")]
+    video_streams = [s for s in res["streams"] if s.get("type") == "video" and not s.get("remove")]
+    audio_streams = [s for s in res["streams"] if s.get("type") == "audio" and not s.get("remove")]
+    subtitle_streams_removed = [s for s in res["streams"] if s.get("type") == "subtitle" and s.get("remove")]
+    subtitle_streams_keeped = [s for s in res["streams"] if s.get("type") == "subtitle" and not s.get("remove")]
 
     if filename.find("[3D]") != -1:
         res["status"] = "Ign"

@@ -22,16 +22,25 @@ from common import *
 mapping_ffprobe = {
     "common": {"index": ["index"], "type": ["codec_type"]},
     "video": {},
-    "audio": {"language": ["tags", "language"], "title": ["tags", "title"], "channel": ["channel_layout"]},
+    "audio": {"language": ["tags", "language"], "title": ["tags", "title"]},
     "subtitle": {"language": ["tags", "language"], "title": ["tags", "title"]}
 }
 
 mapping_mkvmerge = {
     "common": {"index": ["id"], "type": ["type"]},
     "video": {},
-    "audio": {"language": ["properties", "language"], "title": ["properties", "track_name"], "channel": ["properties", "channels"]},
+    "audio": {"language": ["properties", "language"], "title": ["properties", "track_name"]},
     "subtitle": {"language": ["properties", "language"], "title": ["properties", "track_name"]}
 }
+
+mapping_fields = {  "ffprobe": mapping_ffprobe, 
+                    "mkvmerge": mapping_mkvmerge}
+
+mapping_cmd = {     "ffprobe": ["ffprobe", "-v", "error", "-show_streams", "-print_format", "json"], 
+                    "mkvmerge": ["mkvmerge", "-J"]}
+
+mapping_streams = { "ffprobe": "streams", 
+                    "mkvmerge": "tracks"}
 
 def get_value(data, path):
     res = None
@@ -56,55 +65,40 @@ def convert_stream(stream, mapping):
     
     return result
 
-def get_media_info_ffprobe(filepath):
-    cmd = ["ffprobe", "-v", "error", "-show_streams", "-print_format", "json", filepath]
-    result = subprocess.run(cmd, stdout=subprocess.PIPE, stderr=subprocess.PIPE, text=True)
+def get_media_info(filepath,cmd):
+    cmdloc = cmd.copy()
+    cmdloc.append(filepath)
+    result = subprocess.run(cmdloc, stdout=subprocess.PIPE, stderr=subprocess.PIPE, text=True)
     if result.returncode != 0:
-        print("Error FFProbe")
+        print("Error get_media_info")
         return None
     return json.loads(result.stdout)
 
-def get_media_info_mkvmerge(filepath):
-    cmd = ["mkvmerge", "-J", filepath]
-    result = subprocess.run(cmd, stdout=subprocess.PIPE, stderr=subprocess.PIPE, text=True)
-    if result.returncode != 0:
-        print("Error MKV")
-        return None
-    return json.loads(result.stdout)
-
-def analyse_media(filepath, tool):
+def analyse_media(filepath):
     filestats = os.stat(filepath)
     res = {
         "size": round(filestats.st_size / (1024 * 1024), 3),
         "modif": datetime.datetime.fromtimestamp(filestats.st_mtime).strftime("%d/%m/%Y %H:%M"),
-        "streams": []
+        "type": None
     }
-    
-    if tool == "ffprobe":
-        media_info = get_media_info_ffprobe(filepath)
-        if media_info:
-            res["streams"] = [convert_stream(stream, mapping_ffprobe) for stream in media_info.get("streams", [])]
-    elif tool == "mkvmerge":
-        media_info = get_media_info_mkvmerge(filepath)
-        if media_info:
-            res["streams"] = [convert_stream(stream, mapping_mkvmerge) for stream in media_info.get("tracks", [])]
-            if len(media_info.get("warnings", [])) > 0:
-                print(media_info.get("warnings", []))
-    
+    tool = "mkvmerge"
+    media_info = get_media_info(filepath, mapping_cmd[tool])
+    res["type"] = get_value(media_info, ["container", "type"])
+
+    # if media_info:
+    res["streams"] = [convert_stream(stream, mapping_fields[tool]) for stream in media_info.get(mapping_streams[tool], [])]
     return res
 
-movieslist_ffprobe = {}
-movieslist_mkvmerge = {}
+movieslist = {}
 
 for filename in os.listdir(moviespath):
     fullfilename = os.path.join(moviespath, filename)
     if os.path.isfile(fullfilename):
         print(fullfilename)
-        movieslist_ffprobe[filename] = analyse_media(fullfilename, "ffprobe")
-        movieslist_mkvmerge[filename] = analyse_media(fullfilename, "mkvmerge")
+        # movieslist_ffprobe[filename] = analyse_media(fullfilename, "ffprobe")
+        movieslist[filename] = analyse_media(fullfilename)
         
-with open("movieslist_ffprobe.json", "w") as f:
-    json.dump(movieslist_ffprobe, f, indent=4)
+# with open("movieslist_ffprobe.json", "w") as f:
+#     json.dump(movieslist_ffprobe, f, indent=4)
 
-with open("movieslist_mkvmerge.json", "w") as f:
-    json.dump(movieslist_mkvmerge, f, indent=4)
+db_save(movieslist)
