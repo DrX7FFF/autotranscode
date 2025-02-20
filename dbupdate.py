@@ -65,27 +65,30 @@ def convert_stream(stream, mapping):
     
     return result
 
-def get_media_info(filepath,cmd):
-    cmdloc = cmd.copy()
-    cmdloc.append(filepath)
-    result = subprocess.run(cmdloc, stdout=subprocess.PIPE, stderr=subprocess.PIPE, text=True)
+def get_media_info(cmd):
+    result = subprocess.run(cmd, stdout=subprocess.PIPE, stderr=subprocess.PIPE, text=True)
     if result.returncode != 0:
         print("Error get_media_info")
         return None
     return json.loads(result.stdout)
 
-def analyse_media(filepath):
-    filestats = os.stat(filepath)
+def analyse_media(filename):
+    filestats = os.stat(os.path.join(moviespath, filename))
     res = {
         "size": round(filestats.st_size / (1024 * 1024), 3),
         "modif": datetime.datetime.fromtimestamp(filestats.st_mtime).strftime("%d/%m/%Y %H:%M"),
         "type": None
     }
+
     tool = "mkvmerge"
-    media_info = get_media_info(filepath, mapping_cmd[tool])
+    if dockermode:
+        cmd = dockercmd + mapping_cmd[tool] + os.path.join(dockermoviespath, filename)
+    else: 
+        cmd = mapping_cmd[tool] + [os.path.join(moviespath, filename)]
+    
+    media_info = get_media_info(cmd)
     res["type"] = get_value(media_info, ["container", "type"])
 
-    # if media_info:
     res["streams"] = [convert_stream(stream, mapping_fields[tool]) for stream in media_info.get(mapping_streams[tool], [])]
     return res
 
@@ -94,9 +97,9 @@ movieslist = {}
 for filename in os.listdir(moviespath):
     fullfilename = os.path.join(moviespath, filename)
     if os.path.isfile(fullfilename):
-        print(fullfilename)
+        print(filename)
         # movieslist_ffprobe[filename] = analyse_media(fullfilename, "ffprobe")
-        movieslist[filename] = analyse_media(fullfilename)
+        movieslist[filename] = analyse_media(filename)
         
 # with open("movieslist_ffprobe.json", "w") as f:
 #     json.dump(movieslist_ffprobe, f, indent=4)

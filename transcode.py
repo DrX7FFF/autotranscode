@@ -110,7 +110,7 @@ for film in todolist:
                     case "subtitle":
                         filtersubtitle.append(str(stream['index']))
         if dockermode:
-            cmd = ["docker", "exec", "mkvtoolnix"]
+            cmd = dockercmd
         else:
             cmd = []
         cmd = cmd + [ "mkvmerge", "-o", dockertemppath+"/"+tempfilename, "--no-attachments", "--abort-on-warnings", "--flush-on-close" ]

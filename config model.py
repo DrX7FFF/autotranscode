@@ -14,7 +14,9 @@ temppath = "/home/moi/mediaHD1/Transcoding"
 dockermoviespath = "/storage/Films"
 dockertemppath="/storage/Transcoding"
 
-dockermode=False
+dockercmd = ["docker", "exec", "mkvtoolnix"]
+
+dockermode=True
 testmode=True
 
 audio_language_remove = ['eng', 'dan', 'dut', 'ita', 'spa']
