@@ -5,6 +5,9 @@ import re
 import unicodedata
 from common import *
 
+
+audio_title_pattern = r"\b(" + "|".join(audio_title_remove) + r")\b"
+subtitle_title_pattern = r"\b(" + "|".join(subtitle_title_remove) + r")\b"
 # resolution_map = {
 #     range(1900, 1940): '1080p',
 #     range(1260, 1300): '720p',
@@ -19,35 +22,37 @@ def normalize_string(s):
 def stream_treatment(stream):
     resultat = {"remove": False}
     resultat.update(stream)
-    pattern = r"\b(VFQ|AD|SDH|QUEBECOIS)\b"
+    # pattern = r"\b(VFQ|AD|SDH|QUEBECOIS)\b"
     match resultat["type"]:
-        case "video":
-            # resultat["resolution"] = f"{resultat['width']}x{resultat['height']}"
-            # for r, res in resolution_map.items():
-            #     if resultat["width"]  in r:
-            #         resultat["resolution"] = res
-            #         break
-            # if resultat["codec_name"] in ["mjpeg", "png"] or resultat["frame_rate"] == "0/0":
-            #     resultat["remove"] = True
-            resultat["remove"] = False
+        # case "video":
+        #     resultat["resolution"] = f"{resultat['width']}x{resultat['height']}"
+        #     for r, res in resolution_map.items():
+        #         if resultat["width"]  in r:
+        #             resultat["resolution"] = res
+        #             break
+        #     if resultat["codec_name"] in ["mjpeg", "png"] or resultat["frame_rate"] == "0/0":
+        #         resultat["remove"] = True
         case "audio":
-            if not resultat["language"] in ["fre", "fra", "und", "mis", "", None]:
+            # if not resultat["language"] in ["fre", "fra", "und", "mis", "mul", "", None]:
+            if resultat["language"] in audio_language_remove:
                 resultat["remove"] = True
             else:
                 if resultat["title"] != None:
-                    match = re.findall(pattern, normalize_string(resultat["title"]))
+                    # match = re.findall(pattern, normalize_string(resultat["title"]))
+                    match = re.findall(audio_title_pattern, normalize_string(resultat["title"]))
                     if match:
                         resultat["remove"]=True
         case "subtitle":
-            if not resultat["language"] in ["fre", "fra", "und", "mis", "", None]:
+            # if not resultat["language"] in ["fre", "fra", "und", "mis", "", None]:
+            if resultat["language"] in subtitle_language_remove:
                 resultat["remove"] = True
             else:
                 if resultat["title"] != None:
-                    match = re.findall(pattern, normalize_string(resultat["title"]))
+                    match = re.findall(subtitle_title_pattern, normalize_string(resultat["title"]))
                     if match:
                         resultat["remove"]=True
-        case default:
-            resultat["remove"] = True
+        # case default:
+        #     resultat["remove"] = True
     return resultat
 
 
@@ -83,29 +88,23 @@ def analyse_media(filename, moviedef):
             res["comment"] = "To clean"
             res["status"] = "ToDo"
             res["todo"] = True
+            return res
+        else:
+            return None
     # if res["video_codec"] == "h264" and res["resolution"] == "1080p" and res["bitrate"] > 20000:
     #     res["toencode"] = "Yes"
-
-
-    ## conclusion
-
-    # elif res["toencode"] == "Yes":
-    #     res["statut"] = "ToEncode"
-    # elif res["toclean"] == "Yes":
-    #     res["statut"] = "ToClean"
     # elif res["video_codec"] == "hevc" and res["resolution"] == "1080p":
     #     res["statut"]="Good"
 
-    ## Génération du ticket
-    # if res["statut"] == "ToEncode" or res["statut"] == "ToClean":
-
-    return res
+    return None
 
 movieslist = loadjson(dbfilename)
 
 todolist = []
 for filename, moviedef in movieslist.items():
-    todolist.append(analyse_media(filename, moviedef))
+    todo = analyse_media(filename, moviedef)
+    if todo:
+        todolist.append(todo)
 
 save_todo(todolist)
 export_to_csv(todolist)

@@ -1,2 +1,4 @@
 data/
+archives/
+config.py
 __pycache__

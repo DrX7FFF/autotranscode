@@ -84,7 +84,7 @@ if len(sys.argv)>1 :
 else:
     maxiter = 1
 
-logmessage(f"INFO", ">>>> Begin for {maxiter} iter")
+logmessage(f"INFO", f">>>> Begin for {maxiter} iter")
 todolist = loadjson(todofilename)
 
 count = 0
@@ -111,8 +111,11 @@ for film in todolist:
                         filteraudio.append(str(stream['index']))
                     case "subtitle":
                         filtersubtitle.append(str(stream['index']))
-
-        cmd = [ "mkvmerge", "-o", outfile, "--no-attachments", "--abort-on-warnings", "--flush-on-close" ]
+        if dockermode:
+            cmd = ["docker", "exec", "mkvtoolnix"]
+        else:
+            cmd = []
+        cmd = cmd + [ "mkvmerge", "-o", outfile, "--no-attachments", "--abort-on-warnings", "--flush-on-close" ]
         if len(filtervideo)>0:
             cmd.append("--video-tracks")
             cmd.append('!'+','.join(filtervideo))
@@ -126,25 +129,29 @@ for film in todolist:
 
         logmessage("INFO", ' '.join(cmd))
 
-        res = run_cmd(cmd)
-
-        if res["rc"] != 0:
-            logmessage("ERROR", "Return code : "+str(res["rc"]))
-            for msg in res["msg"]:
-                logmessage("INFO", msg)
-            os.remove(outfile)
-            film["comment"]="Error durring processing"
+        if testmode:
+            logmessage("INFO", 'Test mode aborted')
         else:
-            sizebefore = os.stat(infile).st_size
-            sizeafter = os.stat(outfile).st_size
-            gain = int((sizeafter - sizebefore)/(1024*1024))/1000
-            shutil.move(outfile, infile)
-            duration = divmod((dt.datetime.now() - begindt).seconds, 60)
-            logmessage("INFO", f"gain={gain} Go / duration={duration}")
-            film["comment"]="Done :-)"
+            res = run_cmd(cmd)
 
-        film["todo"]=False
-        save_todo(todolist)
+            if res["rc"] != 0:
+                logmessage("ERROR", "Return code : "+str(res["rc"]))
+                for msg in res["msg"]:
+                    logmessage("INFO", msg)
+                os.remove(outfile)
+                film["comment"]="Error durring processing"
+            else:
+                sizebefore = os.stat(infile).st_size
+                sizeafter = os.stat(outfile).st_size
+                gain = int((sizeafter - sizebefore)/(1024*1024))/1000
+                logmessage("INFO", "Moving "+outfile+" to "+infile)
+                shutil.move(outfile, infile)
+                duration = divmod((dt.datetime.now() - begindt).seconds, 60)
+                logmessage("INFO", f"gain={gain} Go / duration={duration}")
+                film["comment"]="Done :-)"
+
+            film["todo"]=False
+            save_todo(todolist)
         logmessage("INFO", "---------------------------------------")
         if count >=maxiter :
             break

@@ -1,9 +1,6 @@
 import json
 import csv
 from config import *
-from pathlib import Path
-Path("./data").mkdir(parents=True, exist_ok=True)
-
 
 def db_save(obj, filename = dbfilename):
     with open(filename, "w", encoding="utf-8") as file:
