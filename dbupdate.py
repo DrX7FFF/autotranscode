@@ -82,7 +82,7 @@ def analyse_media(filename):
 
     tool = "mkvmerge"
     if dockermode:
-        cmd = dockercmd + mapping_cmd[tool] + os.path.join(dockermoviespath, filename)
+        cmd = dockercmd + mapping_cmd[tool] + [os.path.join(dockermoviespath, filename)]
     else: 
         cmd = mapping_cmd[tool] + [os.path.join(moviespath, filename)]
     
