@@ -65,6 +65,7 @@ for film in todolist:
             else:
                 logmessage("INFO", "OS temp file")
                 tempfilepathcmd = os.path.join(dockerfasttemppath, "temp.mkv")
+                tempfilepath = os.path.join(fasttemppath, "temp.mkv")
         else:
             sourcefilepathcmd = sourcefilepath
             tempfilepathcmd = tempfilepath

@@ -9,8 +9,9 @@ todofilename = execpath + "/data/check.json"
 exportfilename = execpath + "/data/export.csv"
 logfile= execpath + "/data/log.txt"
 
-moviespath = "/home/moi/mediaHD1/Films"
-temppath = "/home/moi/mediaHD1/Transcoding"
+moviespath = "/media/HD1/Films"
+temppath = "/media/HD1/Transcoding"
+fasttemppath = "/storage/.config/dockers/mkvtoolnix"
 
 dockermoviespath = "/storage/Films"
 dockertemppath="/storage/Transcoding"
