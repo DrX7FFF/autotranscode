@@ -28,7 +28,7 @@ def run_cmd(command):
         line = line.strip()
         if line:
             if "%" in line:  # Progression
-                print("\r" + line)
+                sys.stdout.write("\r" + line)
             else:  # Autres messages
                 print(line)
                 res["msg"].append(line)  # Stocker l'erreur
