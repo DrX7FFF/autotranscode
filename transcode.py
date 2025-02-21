@@ -9,15 +9,12 @@ import select
 import time
 from common import *
 
-tempfilename = "temp.mkv"
-
 def logmessage(level, message):
     with open(logfile, 'a') as file:
         file.write(f"{dt.datetime.now().strftime('%Y-%m-%d %H:%M:%S')} [{level}] {message}\n")
 
 def run_cmd(command):
     res = {"msg": [], "rc": None}
-    # errors_detected = False  # Flag global pour arrêter ffmpeg après avoir tout lu
 
     process = subprocess.Popen(
         command,
@@ -31,53 +28,14 @@ def run_cmd(command):
         line = line.strip()
         if line:
             if "%" in line:  # Progression
-                sys.stdout.write("\r" + line)
-                sys.stdout.flush()
+                print("\r" + line)
             else:  # Autres messages
-                print(f"{line}", file=sys.stderr)
+                print(line)
                 res["msg"].append(line)  # Stocker l'erreur
-
-    # while process.poll() is None:  # Tant que le processus tourne
-    #     # Lire stdout et stderr en parallèle
-    #     ready, _, _ = select.select([process.stdout, process.stderr], [], [], 30) # timeout de 30 secondes
-    #     for stream in ready:
-    #         for line in iter(stream.readline, ''):  # Lire tout ce qui est dispo
-    #             line = line.strip()
-    #             if not line:
-    #                 continue
-
-    #             if stream == process.stderr:
-    #                 print(f"❌ Erreur détectée : #{line}#", file=sys.stderr)
-    #                 res.append(line)  # Stocker l'erreur
-    #                 # errors_detected = True  # Marquer qu'une erreur a été détectée
-
-    #             elif stream == process.stdout:
-    #                 if "%" in line:  # Détection de la progression de mkvmerge
-    #                     sys.stdout.write(line)
-    #                 else:
-    #                     sys.stdout.write(line +'\n')
-    #                     res.append(line)
-    #     sys.stdout.flush()
-        # if errors_detected:  # Vérifier après avoir tout traité dans cette itération
-        #     process.terminate()  # Stoppe ffmpeg une fois qu'on a bien tout lu
-
-    # while process.poll() is None:  # Tant que le processus tourne
-    #     ready, _, _ = select.select([process.stdout], [], [], 30) # timeout de 30 secondes
-    #     for stream in ready:
-    #         for line in iter(stream.readline, ''):  # Lire tout ce qui est dispo
-    #             line = line.strip()
-    #             if not line:
-    #                 continue
-
-    #             if "%" in line:  # Détection de la progression de mkvmerge
-    #                 sys.stdout.write(line)
-    #             else:
-    #                 sys.stdout.write(line +'\n')
-    #                 res.append(line)
-    #     sys.stdout.flush()
+            sys.stdout.flush()
+ 
     process.wait()
     res["rc"] = process.returncode
-    print("\r\n")
     return res
 
 ### Begin
@@ -89,14 +47,29 @@ else:
 logmessage(f"INFO", f">>>> Begin for {maxiter} iter")
 todolist = loadjson(todofilename)
 
-count = 0
 for film in todolist:
     if film["todo"] :
-        count += 1
-
-        begindt = dt.datetime.now()
         logmessage("INFO", film['filename'])
 
+        sourcefilepath = os.path.join(moviespath, film['filename'])
+        tempfilepath = os.path.join(temppath, "temp.mkv")
+
+        sizebefore = os.stat(sourcefilepath).st_size
+
+        # Check file size
+        if dockermode:
+            sourcefilepathcmd = os.path.join(dockermoviespath, film['filename'])
+            if sizebefore > fastsize*1024*1024:
+                logmessage("INFO", "HD temp file")
+                tempfilepathcmd = os.path.join(dockertemppath, "temp.mkv")
+            else:
+                logmessage("INFO", "OS temp file")
+                tempfilepathcmd = os.path.join(dockerfasttemppath, "temp.mkv")
+        else:
+            sourcefilepathcmd = sourcefilepath
+            tempfilepathcmd = tempfilepath
+        
+        # Build cmd
         filtervideo=[]
         filteraudio=[]
         filtersubtitle=[]
@@ -113,7 +86,7 @@ for film in todolist:
             cmd = dockercmd
         else:
             cmd = []
-        cmd = cmd + [ "mkvmerge", "-o", dockertemppath+"/"+tempfilename, "--no-attachments", "--abort-on-warnings", "--flush-on-close" ]
+        cmd = cmd + [ "mkvmerge", "-o", tempfilepathcmd, "--no-attachments", "--abort-on-warnings", "--flush-on-close" ]
         if len(filtervideo)>0:
             cmd.append("--video-tracks")
             cmd.append('!'+','.join(filtervideo))
@@ -123,7 +96,7 @@ for film in todolist:
         if len(filtersubtitle)>0:
             cmd.append("--subtitle-tracks")
             cmd.append('!'+','.join(filtersubtitle))
-        cmd.append(dockermoviespath+"/"+film["filename"])
+        cmd.append(sourcefilepathcmd)
 
         logmessage("INFO", ' '.join(cmd))
 
@@ -136,21 +109,25 @@ for film in todolist:
                 logmessage("ERROR", "Return code : "+str(res["rc"]))
                 for msg in res["msg"]:
                     logmessage("INFO", msg)
-                os.remove(temppath+"/"+tempfilename)
+                try:
+                    os.remove(tempfilepathcmd)
+                except:
+                    pass
                 film["comment"]="Error durring processing"
             else:
-                sizebefore = os.stat(moviespath+"/"+film["filename"]).st_size
-                sizeafter = os.stat(temppath+"/"+tempfilename).st_size
+                sizeafter = os.stat(tempfilepath).st_size
                 gain = int((sizeafter - sizebefore)/(1024*1024))/1000
-                logmessage("INFO", "Moving "+temppath+"/"+tempfilename+" to "+ moviespath+"/"+film["filename"])
-                shutil.move(temppath+"/"+tempfilename, moviespath+"/"+film["filename"])
-                duration = divmod((dt.datetime.now() - begindt).seconds, 60)
-                logmessage("INFO", f"gain={gain} Go / duration={duration}")
+
+                logmessage("INFO", f"Moving {tempfilepath} to {sourcefilepath}")
+                shutil.move(tempfilepath, sourcefilepath)
+
+                logmessage("INFO", f"gain={gain} Go")
                 film["comment"]="Done :-)"
 
             film["todo"]=False
             save_todo(todolist)
         logmessage("INFO", "---------------------------------------")
-        if count >=maxiter :
+        maxiter -= 1
+        if maxiter==0 :
             break
 logmessage("INFO", ">>>> End")

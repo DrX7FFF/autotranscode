@@ -8,11 +8,14 @@ dbfilename = execpath + "/data/db.json"
 todofilename = execpath + "/data/check.json"
 exportfilename = execpath + "/data/export.csv"
 logfile= execpath + "/data/log.txt"
+
 moviespath = "/home/moi/mediaHD1/Films"
 temppath = "/home/moi/mediaHD1/Transcoding"
 
 dockermoviespath = "/storage/Films"
 dockertemppath="/storage/Transcoding"
+dockerfasttemppath = "/config"
+fastsize = 5000
 
 dockercmd = ["docker", "exec", "mkvtoolnix"]
 

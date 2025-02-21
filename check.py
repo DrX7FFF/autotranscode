@@ -58,6 +58,10 @@ def stream_treatment(stream):
 
 def analyse_media(filename, moviedef):
     res = {"todo":False, "filename": filename, "status":"", "comment":"", "streams": []}
+    if moviedef["type"] != "Matroska":
+        res["status"] = "Ign"
+        res["comment"] = "Not MKV"
+        return None
     res["streams"] = [stream_treatment(stream) for stream in moviedef["streams"]]
 
     ### Check video stream
