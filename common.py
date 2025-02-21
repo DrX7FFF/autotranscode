@@ -2,6 +2,16 @@ import json
 import csv
 from config import *
 
+from pathlib import Path
+
+execpath = os.path.dirname(sys.argv[0])
+
+allfilename = execpath + "/data/all.json"
+todofilename = execpath + "/data/check.json"
+errorfilename = execpath + "/data/error.json"
+exportfilename = execpath + "/data/export.csv"
+logfile= execpath + "/data/log.txt"
+
 # def db_save(obj, filename):
 #     with open(filename, "w", encoding="utf-8") as file:
 #         json.dump(obj, file)
