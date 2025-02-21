@@ -1,7 +1,6 @@
 import json
 import csv
 from config import *
-
 from pathlib import Path
 
 execpath = os.path.dirname(sys.argv[0])
@@ -11,6 +10,8 @@ todofilename = execpath + "/data/check.json"
 errorfilename = execpath + "/data/error.json"
 exportfilename = execpath + "/data/export.csv"
 logfile= execpath + "/data/log.txt"
+
+Path(execpath + "/data").mkdir(parents=True, exist_ok=True)
 
 # def db_save(obj, filename):
 #     with open(filename, "w", encoding="utf-8") as file:

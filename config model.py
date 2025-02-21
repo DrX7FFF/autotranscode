@@ -5,7 +5,7 @@ fasttemppath = "/storage/.config/dockers/mkvtoolnix"
 dockermoviespath = "/storage/Films"
 dockertemppath="/storage/Transcoding"
 dockerfasttemppath = "/config"
-fastsize = 5000
+fastsize = 8000
 
 dockercmd = ["docker", "exec", "mkvtoolnix"]
 
@@ -19,4 +19,3 @@ subtitle_language_remove = ['eng', 'spa', 'ita', 'por', 'ger', 'dut', 'dan', 'fi
 # on garde 'jpn' et 'chi' pour kill bill
 subtitle_title_remove = ['VFQ', 'AD', 'SDH', 'QUEBECOIS']
 
-Path(execpath + "/data").mkdir(parents=True, exist_ok=True)
