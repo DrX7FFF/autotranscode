@@ -10,6 +10,7 @@ import time
 from common import *
 
 def logmessage(level, message):
+    print(message)
     with open(logfile, 'a') as file:
         file.write(f"{dt.datetime.now().strftime('%Y-%m-%d %H:%M:%S')} [{level}] {message}\n")
 
