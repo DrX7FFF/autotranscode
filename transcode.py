@@ -117,6 +117,9 @@ for film in todolist:
                     pass
                 film["comment"]="Error durring processing"
             else:
+                for msg in res["msg"]:
+                    if msg.startswith("Multiplexing took"):
+                        logmessage("INFO", msg)
                 sizeafter = os.stat(tempfilepath).st_size
                 gain = int((sizeafter - sizebefore)/(1024*1024))/1000
 
