@@ -1,5 +1,5 @@
 #!/bin/bash
-VERSION="5"
+VERSION="6"
 
 appname="autotranscode"
 

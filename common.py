@@ -2,17 +2,17 @@ import json
 import csv
 from config import *
 
-def db_save(obj, filename = dbfilename):
-    with open(filename, "w", encoding="utf-8") as file:
-        json.dump(obj, file)
+# def db_save(obj, filename):
+#     with open(filename, "w", encoding="utf-8") as file:
+#         json.dump(obj, file)
 
-def loadjson(filename):
+def loadjson(filename, default=None):
     try:
         with open(filename, "r", encoding="utf-8") as file:
             return json.load(file)
     except:
         print(f"No file : {filename}")
-        return None
+        return default
 
 def custom_json_format(obj, level=0):
     """Formate le JSON pour qu'il soit compact mais avec des retours à la ligne pour chaque objet."""
@@ -25,11 +25,18 @@ def custom_json_format(obj, level=0):
     else:
         return json.dumps(obj, ensure_ascii=False)
 
-def save_todo(films, filename=todofilename) :
+def save_todo(movieslist, filename) :
     with open(filename, 'w', encoding="utf-8") as file:
-        file.write('[\n')
-        file.write(',\n'.join(custom_json_format(obj, 1) for obj in films))
-        file.write('\n]\n')
+        file.write('{\n')
+        first=True
+        for key, obj in movieslist.items():
+            if first:
+                first=False
+            else:
+                file.write(',\n')
+            file.write(f'"{key}": {custom_json_format(obj, 1)}')
+        # file.write(',\n'.join(key + ":" + custom_json_format(obj, 1) for key,obj in movieslist))
+        file.write('\n}\n')
 
 # with open("check.json", 'w') as file:
 #     json.dump(filmlist, file, ensure_ascii=False, separators=(',', ':'))

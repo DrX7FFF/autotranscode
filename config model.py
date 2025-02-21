@@ -4,8 +4,9 @@ from pathlib import Path
 
 execpath = os.path.dirname(sys.argv[0])
 
-dbfilename = execpath + "/data/db.json"
+allfilename = execpath + "/data/all.json"
 todofilename = execpath + "/data/check.json"
+errorfilename = execpath + "/data/error.json"
 exportfilename = execpath + "/data/export.csv"
 logfile= execpath + "/data/log.txt"
 

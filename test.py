@@ -5,7 +5,7 @@ import re
 import unicodedata
 from common import *
 
-movieslist = loadjson(dbfilename)
+movieslist = loadjson(allfilename, {})
 
 audio_langs = []
 audio_titles = []

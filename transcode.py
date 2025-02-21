@@ -46,20 +46,20 @@ else:
     maxiter = 1
 
 logmessage(f"INFO", f">>>> Begin for {maxiter} iter")
-todolist = loadjson(todofilename)
+todolist = loadjson(todofilename,{})
 
-for film in todolist:
+for filename,film in todolist.items():
     if film["todo"] :
-        logmessage("INFO", film['filename'])
+        logmessage("INFO", filename)
 
-        sourcefilepath = os.path.join(moviespath, film['filename'])
+        sourcefilepath = os.path.join(moviespath, filename)
         tempfilepath = os.path.join(temppath, "temp.mkv")
 
         sizebefore = os.stat(sourcefilepath).st_size
 
         # Check file size
         if dockermode:
-            sourcefilepathcmd = os.path.join(dockermoviespath, film['filename'])
+            sourcefilepathcmd = os.path.join(dockermoviespath, filename)
             if sizebefore > fastsize*1024*1024:
                 logmessage("INFO", "HD temp file")
                 tempfilepathcmd = os.path.join(dockertemppath, "temp.mkv")
@@ -130,7 +130,7 @@ for film in todolist:
                 film["comment"]="Done :-)"
 
             film["todo"]=False
-            save_todo(todolist)
+            save_todo(todolist, todofilename)
         logmessage("INFO", "---------------------------------------")
         maxiter -= 1
         if maxiter==0 :
