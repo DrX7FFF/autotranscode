@@ -30,7 +30,7 @@ mapping_ffprobe = {
 
 mapping_mkvmerge = {
     "common": {"remove": [], "index": ["id"], "type": ["type"]},
-    "video": {"dimension": ["properties", "pixel_dimensions"]},
+    "video": {"format": [], "dimension": ["properties", "pixel_dimensions"]},
     "audio": {"language": ["properties", "language"], "title": ["properties", "track_name"]},
     "subtitle": {"language": ["properties", "language"], "title": ["properties", "track_name"]}
 }
@@ -101,13 +101,13 @@ def analyse_media(filename):
 
 audio_title_pattern = r"\b(" + "|".join(audio_title_remove) + r")\b"
 subtitle_title_pattern = r"\b(" + "|".join(subtitle_title_remove) + r")\b"
-# resolution_map = {
-#     range(1900, 1940): '1080p',
-#     range(1260, 1300): '720p',
-#     range(834, 874): '480p',
-#     range(620, 660): '360p',
-#     range(406, 446): '240p'
-# }
+resolution_map = {
+    range(3800, 4100): '4K',
+    range(2500, 2700): '1440p',
+    range(1900, 2000): '1080p',
+    range(1200, 1300): '720p',
+    range(400, 900): 'LOW'
+}
 
 def normalize_string(s):
     return (''.join(c for c in unicodedata.normalize('NFKD', s) if not unicodedata.combining(c))).upper()
@@ -115,14 +115,16 @@ def normalize_string(s):
 def stream_treatment(stream):
     stream["remove"] = False
     match stream["type"]:
-        # case "video":
-        #     stream["resolution"] = f"{stream['width']}x{stream['height']}"
-        #     for r, res in resolution_map.items():
-        #         if stream["width"]  in r:
-        #             stream["resolution"] = res
-        #             break
-        #     if stream["codec_name"] in ["mjpeg", "png"] or stream["frame_rate"] == "0/0":
-        #         stream["remove"] = True
+        case "video":
+            width = int(stream["dimension"].partition('x')[0])
+            for r, res in resolution_map.items():
+                if width in r:
+                    stream["format"] = res
+                    break
+                else:
+                    stream["format"] = "unknown"
+            # if stream["codec_name"] in ["mjpeg", "png"] or stream["frame_rate"] == "0/0":
+            #     stream["remove"] = True
         case "audio":
             if stream["language"] in audio_language_remove:
                 stream["remove"] = True
@@ -143,11 +145,6 @@ def stream_treatment(stream):
         #     stream["remove"] = True
 
 def analyse_movie(filename, moviedef):
-    if moviedef["type"] != "Matroska":
-        moviedef["status"] = "Ignore"
-        moviedef["comment"] = "Not MKV"
-        return
-    
     for stream in moviedef["streams"]:
         stream_treatment(stream)
 
@@ -157,18 +154,17 @@ def analyse_movie(filename, moviedef):
     subtitle_streams_removed = [s for s in moviedef["streams"] if s.get("type") == "subtitle" and s.get("remove")]
     subtitle_streams_keeped = [s for s in moviedef["streams"] if s.get("type") == "subtitle" and not s.get("remove")]
 
-    if filename.find("[3D]") != -1:
-        moviedef["status"] = "Ignore"
-        moviedef["comment"] = "3D Movie"
-    elif not video_streams:
+    moviedef["status"] = ""
+    moviedef["comment"] = ""
+    if not video_streams:
         moviedef["status"] = "Error"
         moviedef["comment"] = "Pas de flux vidéo"
     elif len(video_streams) > 1:
         moviedef["status"] = "Error"
         moviedef["comment"] = "Plusieurs flux vidéo"
-    elif not video_streams[0]["dimension"].startswith("1920x"):
+    elif not video_streams[0]["format"] == "1080p":
         moviedef["status"] = "ToDownload"
-        moviedef["comment"] = "Bad resoltion"
+        moviedef["comment"] = "Bad resolution"
     elif not audio_streams:
         moviedef["status"] = "Error"
         moviedef["comment"] = "Pas de flux audio"
@@ -176,14 +172,13 @@ def analyse_movie(filename, moviedef):
         moviedef["status"] = "Error"
         moviedef["comment"] = "Plus de soustitres"
     else:
-        streams_remove = [s for s in moviedef["streams"] if s.get("remove")==True]
-        if len(streams_remove) > 0:
-            moviedef["status"] = "ToDo"
-            moviedef["comment"] = "To clean"
-            moviedef["todo"] = True
-        else:
-            moviedef["status"] = ""
-            moviedef["comment"] = ""
+        if moviedef["type"] == "Matroska":
+            streams_remove = [s for s in moviedef["streams"] if s.get("remove")==True]
+            if len(streams_remove) > 0:
+                moviedef["status"] = "ToDo"
+                moviedef["comment"] = "To clean"
+                moviedef["todo"] = True
+    # if filename.find("[3D]") != -1:
     # if res["video_codec"] == "h264" and res["resolution"] == "1080p" and res["bitrate"] > 20000:
     #     res["toencode"] = "Yes"
     # elif res["video_codec"] == "hevc" and res["resolution"] == "1080p":

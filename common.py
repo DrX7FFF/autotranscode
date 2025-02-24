@@ -1,3 +1,5 @@
+import os
+import sys
 import json
 import csv
 from config import *
@@ -6,7 +8,7 @@ from pathlib import Path
 execpath = os.path.dirname(sys.argv[0])
 
 allfilename = execpath + "/data/all.json"
-todofilename = execpath + "/data/check.json"
+todofilename = execpath + "/data/todo.json"
 errorfilename = execpath + "/data/error.json"
 exportfilename = execpath + "/data/export.csv"
 logfile= execpath + "/data/log.txt"
