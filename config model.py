@@ -12,7 +12,7 @@ dockercmd = ["docker", "exec", "mkvtoolnix"]
 dockermode=True
 testmode=True
 
-audio_language_remove = ['eng', 'dan', 'dut', 'ita', 'spa']
+audio_language_remove = ['eng', 'dan', 'dut', 'ita', 'spa', 'kor', 'por', 'cat', 'ger']
 audio_title_remove = ['VFQ', 'AD', 'SDH', 'QUEBECOIS']
 
 subtitle_language_remove = ['eng', 'spa', 'ita', 'por', 'ger', 'dut', 'dan', 'fin', 'ice', 'kor', 'nor', 'swe']

@@ -162,9 +162,9 @@ def analyse_movie(filename, moviedef):
     elif len(video_streams) > 1:
         moviedef["status"] = "Error"
         moviedef["comment"] = "Plusieurs flux vidéo"
-    elif not video_streams[0]["format"] == "1080p":
-        moviedef["status"] = "ToDownload"
-        moviedef["comment"] = "Bad resolution"
+    # elif not video_streams[0]["format"] == "1080p":
+    #     moviedef["status"] = "ToDownload"
+    #     moviedef["comment"] = "Bad resolution"
     elif not audio_streams:
         moviedef["status"] = "Error"
         moviedef["comment"] = "Pas de flux audio"
